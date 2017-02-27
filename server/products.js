@@ -3,7 +3,7 @@
 const express = require('express');
 const router = new express.Router();
 const db = require('APP/db')
-const Product = require('../models/product')
+const Product = require('../db/models/product')
 module.exports = router;
 
 
