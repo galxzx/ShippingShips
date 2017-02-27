@@ -10,4 +10,4 @@ const Category = require('./category')
 
 OAuth.belongsTo(User)
 User.hasOne(OAuth)
-module.exports = {User}
+module.exports = {User, Category}
