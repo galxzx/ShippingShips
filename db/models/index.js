@@ -12,16 +12,11 @@ const Product = require('./product');
 const Review = require('./review')
 
 
-
-//hey alan!
-
 OAuth.belongsTo(User)
 Review.belongsTo(User)
 Review.belongsTo(Product)
 User.hasOne(OAuth)
+Product.belongsToMany(Category, {through: 'product_category'})
+Category.belongsToMany(Product, {through: 'product_category'})
 
-Product.hasMany(Category)
-
-module.exports = {User, Category, Review}
-
-
+module.exports = {User, Category, Review, Product}

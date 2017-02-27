@@ -17,11 +17,11 @@ const Product = db.define( 'product',  {
 		allowNull: false
 	},
 	inventory: {
-		type: Sequelize.INTEGER.UNSIGNED,
+		type: Sequelize.INTEGER,
 		allowNull: false
 	},
 	photoURL: {
-		type: Sequelize.STIRNG,
+		type: Sequelize.STRING,
 		defaultValue: 'http://blogs.warwick.ac.uk/images/jmears/2007/05/23/7_popeye_boat.jpg'
 	}
 
@@ -36,11 +36,14 @@ const Product = db.define( 'product',  {
 	},
 	hooks: {
 		beforeCreate: (product) => {
-			product.countCategories()
-			.then( (count) => {
-				if (count < 1) throw new Error('Product must have at least one category')
-			})
-			.catch(console.error);
+			console.log(product);
+			if(product.categories.length < 1) throw new Error('Product must have at least one category');
+			// product.countCategories()
+			// .then( (count) => {
+			// 	console.log(count);
+			// 	if (count < 1) throw new Error('Product must have at least one category')
+			// })
+			// .catch(console.error);
 		}
 	}
 })
