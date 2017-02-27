@@ -8,12 +8,7 @@ const seedUsers = () => db.Promise.map([
 ], user => db.model('users').create(user))
 
 const seedProducts = () => db.Promise.map([
-  {title: '', description: '', price: 0, inventory: 5, categories: [{name: 'powerboat'}, {name: 'pleasureboat'}]},
-  {title: '', description: '', price: 0, inventory: 5, categories: [{name: 'powerboat'}, {name: 'pleasureboat'}]},
-  {title: '', description: '', price: 0, inventory: 5, categories: [{name: 'powerboat'}, {name: 'pleasureboat'}]},
-  {title: '', description: '', price: 0, inventory: 5, categories: [{name: 'powerboat'}, {name: 'pleasureboat'}]},
-  {title: '', description: '', price: 0, inventory: 5, categories: [{name: 'powerboat'}, {name: 'pleasureboat'}]}
-], product => Product.create(product, {include: [Category]}))
+  {title: 'Sos Your Mom', description: 'This is a description', price: 1000, inventory: 5, categories: [{name: 'powerboat'}, {name: 'pleasureboat'}]},  {title: 'Weather Oar Knot', description: 'Here are some workds', price: 4000, inventory: 5, categories: [{name: 'powerboat'}, {name: 'pleasureboat'}]},  {title: 'Row vs Wade', description: 'Something to say', price: 0, inventory: 5, categories: [{name: 'sailboat'}, {name: 'pleasureboat'}]},  {title: 'Anchors Away', description: 'Something about a thing', price: 200000, inventory: 5, categories: [{name: 'powerboat'}, {name: 'commercial'}]},  {title: 'BobbleHead', description: 'Splish splash', price: 10000, inventory: 5, categories: [{name: 'powerboat'}, {name: 'pleasureboat'}]}], product => Product.create(product, {include: [Category]}))
 
 db.didSync
   .then(() => db.sync({force: true}))
