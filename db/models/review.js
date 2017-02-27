@@ -3,7 +3,7 @@
 const Sequelize = require('sequelize')
 const db = require('APP/db')
 
-const Review = db.define('category', {
+const Review = db.define('review', {
 	stars: {
 		type: Sequelize.INTEGER,
 		allowNull: false
