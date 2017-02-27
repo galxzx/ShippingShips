@@ -39,7 +39,8 @@ const Product = db.define( 'product',  {
 			product.countCategories()
 			.then( (count) => {
 				if (count < 1) throw new Error('Product must have at least one category')
-			});
+			})
+			.catch(console.error);
 		}
 	}
 })
