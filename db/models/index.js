@@ -7,9 +7,11 @@
 const User = require('./user')
 const OAuth = require('./oauth')
 const Category = require('./category')
+const Product = require('./product');
 
 //hey alan!
 
 OAuth.belongsTo(User)
 User.hasOne(OAuth)
+Product.hasMany(Category)
 module.exports = {User, Category}
