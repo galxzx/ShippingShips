@@ -10,11 +10,7 @@ api
   .use('/products', require('./products'))
   .use('/orders', require('./orders'))
   .use('/categories', require('./categories'))
-<<<<<<< HEAD
-  // .use('/admin', require('./admin'))
-=======
-  //.use('/admin', require('./admin'))
->>>>>>> master
+
 
 
 // No routes matched? 404.

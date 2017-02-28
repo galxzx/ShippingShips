@@ -11,6 +11,7 @@ import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import App from './components/App'
 import ProductContainer from './containers/ProductContainer'
+import ProductsContainer from './containers/ProductsContainer'
 
 import {setProducts} from './reducers/product'
 import {setCategories} from './reducers/categories'

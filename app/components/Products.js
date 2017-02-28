@@ -4,6 +4,7 @@ import React from 'react';
 export default function Product (props) {
 
   const allProducts = props.allProducts;
+  console.log('prodz',allProducts)
  
   return (
     <div>
@@ -18,7 +19,7 @@ export default function Product (props) {
           <p>Price: ${product.price}</p>
           <p>No. Available: {product.inventory}</p>
           <div className='row'>
-            <img src={product.photoUrl}/>
+            <img src={product.photoURL}/>
           </div>
         </li>
 
