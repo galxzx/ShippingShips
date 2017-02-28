@@ -2,7 +2,7 @@
 
 const express = require('express')
 const bodyParser = require('body-parser')
-const {resolve} = require('path')
+const {resolve, join} = require('path')
 const passport = require('passport')
 const PrettyError = require('pretty-error')
 // PrettyError docs: https://www.npmjs.com/package/pretty-error
@@ -46,8 +46,14 @@ module.exports = app
   .use(passport.initialize())
   .use(passport.session())
 
+
+   //Serve static bootstrap files
+  .use('/bootstrap', express.static(join(__dirname, '../node_modules/bootstrap/dist')))
+
   // Serve static files from ../public
   .use(express.static(resolve(__dirname, '..', 'public')))
+
+
 
   // Serve our api - ./api also requires in ../db, which syncs with our database
   .use('/api', require('./api'))

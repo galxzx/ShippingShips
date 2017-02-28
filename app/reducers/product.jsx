@@ -8,7 +8,7 @@ const SELECT_PRODUCT = 'SELECT_PRODUCT';
 
 /* ------------   ACTION CREATORS     ------------------ */
 
-const loadProducts = products => ({ type: GET_ALL_PRODUCT, products })
+const setProducts = products => ({ type: GET_ALL_PRODUCT, products })
 const selectProducts = (product) => ({type: SELECT_PRODUCT, product})
 
 /* ------------       REDUCER     ------------------ */
@@ -24,7 +24,7 @@ const initState = {
 	selectedProduct: {}
 }
 
-export default const reducer = (state = initState, action) => {
+export const reducer = (state = initState, action) => {
 	const newState = Object.assign({}, state)
 	switch (action.type){
 
