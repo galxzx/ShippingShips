@@ -2,13 +2,13 @@ import axios from 'axios';
 /* -----------------    ACTIONS     ------------------ */
 
 
-const GET_ALL_PRODUCT = 'GET_ALL_PRODUCT';
+const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
 const SELECT_PRODUCT = 'SELECT_PRODUCT';
 
 
 /* ------------   ACTION CREATORS     ------------------ */
 
-const setProducts = products => ({ type: GET_ALL_PRODUCT, products })
+const setProducts = products => ({ type: GET_ALL_PRODUCTS, products })
 const setOneProduct = (product) => ({type: SELECT_PRODUCT, product})
 
 
@@ -24,8 +24,8 @@ export const reducer = (state = initState, action) => {
 	const newState = Object.assign({}, state)
 	switch (action.type){
 
-		case GET_ALL_PRODUCT:
-			newState.allProduct = action.products
+		case GET_ALL_PRODUCTS:
+			newState.allProducts = action.products
 			break;
 
 		case SELECT_PRODUCT:

@@ -29,8 +29,8 @@ export default function Root () {
     <Provider store={store}>
       <Router history={browserHistory}>
         <Route path="/" component={App} >
-          <Route path="/product" component={ProductContainer}/>
-          <IndexRedirect to="/product"/>
+          <Route path="/products" component={ProductsContainer}/>
+          <IndexRedirect to="/products"/>
         </Route>
       </Router>
     </Provider>
