@@ -11,7 +11,6 @@ api
   .use('/products', require('./products'))
   .use('/orders', require('./orders'))
   .use('/categories', require('./categories'))
- 
 
 
 // No routes matched? 404.
