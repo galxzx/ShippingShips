@@ -52,6 +52,7 @@ module.exports = app
 
   // Serve static files from ../public
   .use(express.static(resolve(__dirname, '..', 'public')))
+  .use('/public', express.static(resolve(__dirname, '..', 'public')))
 
 
 

@@ -8,25 +8,25 @@ export default function Product (props) {
  
   return (
     <div>
-    <ul>
-
+    <ul className='plainList'>
     {
-   
-      allProducts&&allProducts.map(product=>(   
-        <li key={product.id}>
-          <h3>{product.title}</h3>
-          <p>{product.description}</p>
-          <p>Price: ${product.price}</p>
-          <p>No. Available: {product.inventory}</p>
+      allProducts&&allProducts.map(product=>(
+        <div key={product.id} className='well floatLeft margin10'>  
+        <li >
+          <h4 className='center'>{product.title}</h4>
           <div className='row'>
-            <img src={product.photoURL}/>
+          <img src={product.photoURL}  className='img-thumbnail img-responsive thumbs' />
+          <p>Price: ${product.price}</p>
+          {
+            product.categories.map(category=>(
+              <button key={category.id} className='btn btn-xs btn-primary margin3'>{category.name}</button>
+            ))
+          }
           </div>
         </li>
+        </div>
 
       ))
-     
-
-
     }
     </ul>
 
