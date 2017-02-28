@@ -10,9 +10,9 @@ const Sidebar = (props) => {
       <img src="" className="logo" />
       {categories.map((category) => {
         return (
-        <section>
+        <section key={category.id}>
           <h4 className="menu-item active">
-            <Link to='' onClick={()=>{}}>{category}</Link>
+            <Link to='' onClick={()=>{}}>{category.name}</Link>
           </h4>
         </section>
         )
