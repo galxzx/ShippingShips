@@ -20,7 +20,7 @@ const selectProducts = (product) => ({type: SELECT_PRODUCT, product})
 // };
 
 const initState = {
-	allProduct: [],
+	allProducts: [],
 	selectedProduct: {}
 }
 
