@@ -7,11 +7,12 @@ export default function Product (props) {
  
   return (
     <div>
+    <ul>
 
     {
-      <ul>
-      allProducts.map(product=>{   
-        <li>
+   
+      allProducts&&allProducts.map(product=>(   
+        <li key={product.id}>
           <h3>{product.title}</h3>
           <p>{product.description}</p>
           <p>Price: ${product.price}</p>
@@ -21,11 +22,12 @@ export default function Product (props) {
           </div>
         </li>
 
-      })
-      </ul>
+      ))
+     
 
 
     }
+    </ul>
 
     </div>
   )
