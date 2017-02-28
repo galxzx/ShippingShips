@@ -20,7 +20,7 @@ router.post('/', (req, res, next) => {
 })
 
 //Product update route
-route.put('/:productId' (req, res, next) => {
+route.put('/:productId', (req, res, next) => {
 	req.product.update(req.body)
 	.then( product => {
 		res.json(product);
