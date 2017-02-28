@@ -24,7 +24,6 @@ const ExampleApp = connect(
 )
 
 
-
 export default function Root () {
   return (
     <Provider store={store}>

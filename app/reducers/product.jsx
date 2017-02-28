@@ -9,7 +9,8 @@ const SELECT_PRODUCT = 'SELECT_PRODUCT';
 /* ------------   ACTION CREATORS     ------------------ */
 
 const setProducts = products => ({ type: GET_ALL_PRODUCT, products })
-const selectProducts = (product) => ({type: SELECT_PRODUCT, product})
+const setOneProduct = (product) => ({type: SELECT_PRODUCT, product})
+
 
 /* ------------       REDUCER     ------------------ */
 
@@ -32,6 +33,10 @@ export const reducer = (state = initState, action) => {
 			newState.allProduct = action.products
 			break;
 
+		case SELECT_PRODUCT:
+			newState.selectedProduct = action.product
+			break;
+
 		default:
 			return state;
 	}
@@ -46,7 +51,15 @@ export const reducer = (state = initState, action) => {
 export const loadProducts = () => dispatch => {
 	axios.get('/api/products')
 	.then( res => {
-		dispatch(loadProducts(res.data))
+		dispatch(setProducts(res.data))
+	})
+	.catch( err => console.error(err))
+}
+
+export const loadProductById = (id) => dispatch => {
+	axios.get('/api/products/'+id)
+	.then( res => {
+		dispatch(setOneProduct(res.data))
 	})
 	.catch( err => console.error(err))
 }
