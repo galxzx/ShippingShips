@@ -6,11 +6,12 @@ const api = module.exports = require('express').Router()
 api
   .get('/heartbeat', (req, res) => res.send({ok: true}))
   .use('/auth', require('./auth'))
+  .use('/admin', require('./admin'))
   .use('/users', require('./users'))
   .use('/products', require('./products'))
   .use('/orders', require('./orders'))
   .use('/categories', require('./categories'))
-  //.use('/admin', require('./admin'))
+ 
 
 
 // No routes matched? 404.
