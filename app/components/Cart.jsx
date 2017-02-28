@@ -5,7 +5,7 @@ export default function Cart ({cart, total}){
 
 	return (
 	        <div>
-	        	<ul>
+	        	<ol>
 	        		{
 	        			cart&&cart.map( item => {
 	        				<li key = {item.id}>
@@ -15,7 +15,7 @@ export default function Cart ({cart, total}){
 	        				</li>
 	        			})
 	        		}
-	        	</ul>
+	        	</ol>
 
 	        </div>
 	        );
