@@ -3,29 +3,31 @@ import axios from 'axios';
 
 
 const SET_CATEGORIES = 'SET_CATEGORIES';
-
+const SET_CAT_PRODUCTS = 'SET_CAT_PRODUCTS';
 
 /* ------------   ACTION CREATORS     ------------------ */
 
 const setCategories = products => ({ type: SET_CATEGORIES, categories })
-const selectProducts = (product) => ({type: SELECT_PRODUCT, product})
+const selCatProducts = (products) => ({type: SET_CAT_PRODUCTS, products})
 
 /* ------------       REDUCER     ------------------ */
 
 
 const initState = {
-  allProduct: [],
-  selectedProduct: {}
+  categories: ['FOO', 'BAR', 'BAZ'],
+  selCatProducts: {}
 }
 
 export const reducer = (state = initState, action) => {
   const newState = Object.assign({}, state)
   switch (action.type){
 
-    case GET_ALL_PRODUCT:
-      newState.allProduct = action.products
+    case SET_CATEGORIES:
+      newState.allProduct = action.categories;
       break;
-
+    case SET_CAT_PRODUCTS:
+      newState.selCatProducts = action.products;
+      break;
     default:
       return state;
   }
@@ -37,12 +39,20 @@ export const reducer = (state = initState, action) => {
 
 //Dispatching functions will hit appropriate backend routes to fetch appropriate data
 
-export const loadProducts = () => dispatch => {
-  axios.get('/api/products')
+export const loadCategories = () => dispatch => {
+  axios.get('/api/categories')
   .then( res => {
-    dispatch(loadProducts(res.data))
+    dispatch(setCategories(res.data))
   })
   .catch( err => console.error(err))
+}
+
+export const loadProductsInCat = (catId) => dispatch => {
+  axios.get(`/api/categories/${catId}`)
+  .then(res => {
+    dispatch(selCatProducts(res.data))
+  })
+  .catch(console.error)
 }
 
 

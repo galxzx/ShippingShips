@@ -1,21 +1,24 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const Sidebar = (props) => {
 
-  const categories = props.categories;
-
+  const categories = props.category.categories;
+  console.log('================this is categories', categories)
   return (
-    <sidebar>
+    <div>
       <img src="" className="logo" />
       {categories.map((category) => {
+        return (
         <section>
           <h4 className="menu-item active">
-            <Link to='' onClick={selectCategory}>{category}</Link>
+            <Link to='' onClick={()=>{}}>{category}</Link>
           </h4>
         </section>
+        )
       })}
 
-    </sidebar>
+    </div>
   );
 }
 
