@@ -7,8 +7,8 @@ const SET_CAT_PRODUCTS = 'SET_CAT_PRODUCTS';
 
 /* ------------   ACTION CREATORS     ------------------ */
 
-const setCategories = products => ({ type: SET_CATEGORIES, categories })
-const selCatProducts = (products) => ({type: SET_CAT_PRODUCTS, products})
+export const setCategories = categories => ({ type: SET_CATEGORIES, categories })
+export const selCatProducts = (products) => ({type: SET_CAT_PRODUCTS, products})
 
 /* ------------       REDUCER     ------------------ */
 
@@ -23,7 +23,7 @@ export const reducer = (state = initState, action) => {
   switch (action.type){
 
     case SET_CATEGORIES:
-      newState.allProduct = action.categories;
+      newState.categories = action.categories;
       break;
     case SET_CAT_PRODUCTS:
       newState.selCatProducts = action.products;
