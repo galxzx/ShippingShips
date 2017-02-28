@@ -10,11 +10,13 @@ const Sidebar = (props) => {
       <img src="" className="logo" />
       {categories.map((category) => {
         return (
-        <section key={category.id}>
+        <div key={category.id}>
+        <section>
           <h4 className="menu-item active">
             <Link to='' onClick={()=>{}}>{category.name}</Link>
           </h4>
         </section>
+        </div>
         )
       })}
 
