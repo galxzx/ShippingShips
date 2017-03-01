@@ -7,8 +7,8 @@ const REMOVE_ITEM_FROM_CART = 'REMOVE_ITEM_FROM_CART';
 
 /* ------------   ACTION CREATORS     ------------------ */
 
-export const addItemToCart = item => ({ type: ADD_ITEM_TO_CART, item});
-export const removeItemFromCart = item => ({type: REMOVE_ITEM_FROM_CART, item})
+export const addItem = item => ({ type: ADD_ITEM_TO_CART, item});
+export const removeItem = item => ({type: REMOVE_ITEM_FROM_CART, item})
 
 /* ------------       REDUCER     ------------------ */
 
@@ -37,6 +37,9 @@ const reducer = (state = initState, action) => {
 }
 
 /* ------------       DISPATCHERS     ------------------ */
-
+export const addItemToCart = (item) => dispatch => {
+	console.log("WOO ABOUT TO DISPATCH")
+	dispatch(addItem(item))
+}
 
 export default reducer;
