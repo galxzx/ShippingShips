@@ -2,7 +2,8 @@
 
 const db = require('APP/db')
 const Product = require('../db/models/product')
-const Category = require('../db/models/category')
+
+
 const Review = require('../db/models/review')
 
 module.exports = require('express').Router()
