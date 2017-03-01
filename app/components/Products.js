@@ -15,7 +15,10 @@ export default function Product (props) {
         <li >
           <h4 className='center'>{product.title}</h4>
           <div className='row'>
+          <div className='margin3'>
+
           <img src={product.photoURL}  className='img-thumbnail img-responsive thumbs' />
+          </div>
           <p>Price: ${product.price}</p>
           {
             product.categories.map(category=>(
