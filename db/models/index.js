@@ -6,7 +6,7 @@
 
 const User = require('./user')
 const OAuth = require('./oauth')
-const Category = require('./category')
+//const Category = require('./category')
 
 const Product = require('./product');
 const Review = require('./review')
@@ -20,7 +20,7 @@ User.hasOne(OAuth)
 Order.belongsTo(User)
 Order.hasMany(OrderItem)
 OrderItem.belongsTo(Product)
-Product.belongsToMany(Category, {through: 'product_category'})
-Category.belongsToMany(Product, {through: 'product_category'})
+// Product.belongsToMany(Category, {through: 'product_category'})
+// Category.belongsToMany(Product, {through: 'product_category'})
 
-module.exports = {User, Category, Review, Product, Order, OrderItem}
+module.exports = {User, Review, Product, Order, OrderItem}
