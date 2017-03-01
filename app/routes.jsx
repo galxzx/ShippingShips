@@ -11,6 +11,7 @@ import WhoAmI from './components/WhoAmI'
 import App from './components/App'
 import ProductContainer from './containers/ProductContainer'
 import ProductsContainer from './containers/ProductsContainer'
+import CategoryContainer from './containers/CategoryContainer'
 
 import {setProducts} from './reducers/product'
 import {setCategories} from './reducers/categories'
@@ -37,8 +38,9 @@ export default function Root () {
     <Provider store={store}>
       <Router history={browserHistory}>
         <Route path="/" component={App} onEnter={onAppEnter}>
-          <Route path="/products" component={ProductsContainer}/>
-          <Route path="/products/:productId" component={ProductContainer} />
+          <Route path="/products" component={ProductsContainer} />
+          <Route path="/product" component={ProductContainer} />
+          <Route path="/category" component={CategoryContainer} />
           <IndexRedirect to="/products"/>
         </Route>
       </Router>

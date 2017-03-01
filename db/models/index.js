@@ -15,6 +15,7 @@ const OrderItem = require('./orderItem')
 
 OAuth.belongsTo(User)
 Review.belongsTo(User)
+User.hasMany(Review)
 Product.hasMany(Review)
 Review.belongsTo(Product)
 Product.hasMany(Review)
