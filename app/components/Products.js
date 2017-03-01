@@ -12,8 +12,8 @@ export default function Product (props) {
     <ul className='plainList'>
     {
       allProducts&&allProducts.map(product=>(
-        <Link to={'/products/' + product.id} onClick={e=>props.selectOneProduct(product)} >
-        <div key={product.id} className='well floatLeft margin10' >  
+        <Link to={'/product'} onClick={e=>props.selectOneProduct(product)} >
+        <div key={product.id} className='well margin10' >  
         <li >
           <h4 className='center'>{product.title}</h4>
           <div className='row'>
