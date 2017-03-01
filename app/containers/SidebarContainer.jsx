@@ -1,6 +1,7 @@
 
 import Sidebar from '../components/Sidebar';
 import { connect } from 'react-redux';
+import {loadProductsInCat} from '../reducers/categories'
 
 const mapStateToProps = (state) => {
   return {
@@ -8,6 +9,13 @@ const mapStateToProps = (state) => {
   };
 };
 
-const SidebarContainer = connect(mapStateToProps)(Sidebar);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onClick: (category) => {
+      dispatch(loadProductsInCat(category))
+    }
+  }
+}
+const SidebarContainer = connect(mapStateToProps, mapDispatchToProps)(Sidebar);
 
 export default SidebarContainer;

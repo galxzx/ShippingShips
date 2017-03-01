@@ -26,13 +26,16 @@ module.exports = require('express').Router()
     })
     .catch(next))
 
-  .get('/:productId', (req, res) =>
-    res.json(req.product))
+  .get('/:productId', (req, res, next) =>
+    res.json(req.product)
+    .catch(next)
+    )
 
-  .get('/:category', (req, res) => {
+  .get('/cat/:category', (req, res, next) => {
+    console.log(req.params.category)
     Product.findAll({
       where:{
-        category: {
+        categories: {
           $overlap: [req.params.category]
         }
       }

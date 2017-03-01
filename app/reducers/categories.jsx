@@ -15,7 +15,7 @@ export const selCatProducts = (products) => ({type: SET_CAT_PRODUCTS, products})
 
 const initState = {
   categories: ['powerboat', 'sailboat', 'commercial', 'pleasurecraft', 'military'],
-  selCatProducts: {}
+  selCatProducts: []
 }
 
 export const reducer = (state = initState, action) => {
@@ -48,7 +48,7 @@ export const reducer = (state = initState, action) => {
 // }
 
 export const loadProductsInCat = (category) => dispatch => {
-  axios.get(`/api/products/${category}`)
+  axios.get(`/api/products/cat/${category}`)
   .then(res => {
     dispatch(selCatProducts(res.data))
   })
