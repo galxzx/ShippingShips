@@ -15,7 +15,7 @@ describe('Product', () => {
       { description: 'This is a description', 
         price: 1000, 
         inventory: 5, 
-        categories: [{name: 'powerboat'}, {name: 'pleasureboat'}]
+        categories: [ 'powerboat', 'pleasureboat']
     })
   )
 
@@ -28,5 +28,19 @@ describe('Product', () => {
         expect(result.message).to.contain('title cannot be null');
       })
     })
+
+    it('does not create a product without an empty string as a title', () => {
+      product.title='';
+       return product.validate()
+      .then((result) => {
+        expect(result).to.be.an.instanceOf(Error);
+        expect(result.message).to.contain('title cannot be null');
+      })
+    })
+
+
+
+
+
   })
 })

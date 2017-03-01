@@ -3,6 +3,7 @@
 const db = require('APP/db')
 const Product = require('../db/models/product')
 const Category = require('../db/models/category')
+const Review = require('../db/models/review')
 
 module.exports = require('express').Router()
   .get('/', (req, res, next) =>
@@ -11,7 +12,7 @@ module.exports = require('express').Router()
     .catch(next))
 
   .param('productId', (req, res, next, theProductId) =>
-    Product.findOne({where: {id:theProductId}, include: [Category]})
+    Product.findOne({where: {id:theProductId}, include: [Review]})
     .then(product => {
       if (!product) {
         const err = Error('Product Not Found');
