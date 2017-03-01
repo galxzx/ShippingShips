@@ -5,7 +5,13 @@ const Product = require('APP/db/models/product')
 const app = require('./start')
 
 describe('/api/products', () => {
+  before(function () {
+    return db.sync({force: true});
+  });
 
+  afterEach(function () {
+    return db.sync({force: true});
+  });
 
 
   describe('gets all products from DB', () => {
