@@ -6,7 +6,8 @@ const db = require('APP/db')
 const Product = db.define( 'product',  {
 	title: {
 		type: Sequelize.STRING,
-		allowNull: false
+		allowNull: false,
+		notEmpty: true
 	},
 	description: {
 		type: Sequelize.TEXT,
@@ -34,18 +35,18 @@ const Product = db.define( 'product',  {
 	classMethods: {
 
 	},
-	hooks: {
-		beforeCreate: (product) => {
-			console.log(product);
-			if(product.categories.length < 1) throw new Error('Product must have at least one category');
-			// product.countCategories()
-			// .then( (count) => {
-			// 	console.log(count);
-			// 	if (count < 1) throw new Error('Product must have at least one category')
-			// })
-			// .catch(console.error);
-		}
-	}
+	// hooks: {
+	// 	beforeCreate: (product) => {
+	// 		console.log(product);
+	// 		if(product.categories.length < 1) throw new Error('Product must have at least one category');
+	// 		// product.countCategories()
+	// 		// .then( (count) => {
+	// 		// 	console.log(count);
+	// 		// 	if (count < 1) throw new Error('Product must have at least one category')
+	// 		// })
+	// 		// .catch(console.error);
+	// 	}
+	// }
 })
 
 module.exports = Product;
