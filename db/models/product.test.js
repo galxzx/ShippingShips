@@ -12,7 +12,8 @@ describe('Product', () => {
   let product;
   beforeEach(()=>
     product = Product.build(
-      { description: 'This is a description', 
+      { title : 'A Product Title',
+        description: 'This is a description', 
         price: 1000, 
         inventory: 5, 
         categories: [ 'powerboat', 'pleasureboat']
@@ -34,7 +35,16 @@ describe('Product', () => {
        return product.validate()
       .then((result) => {
         expect(result).to.be.an.instanceOf(Error);
-        expect(result.message).to.contain('title cannot be null');
+        expect(result.message).to.contain('Validation error');
+      })
+    })
+
+     it('does not create a product without an description', () => {
+      product.description=null;
+       return product.validate()
+      .then((result) => {
+        expect(result).to.be.an.instanceOf(Error);
+        expect(result.message).to.contain('description cannot be null');
       })
     })
 
