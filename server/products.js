@@ -6,9 +6,10 @@ const Category = require('../db/models/category')
 
 module.exports = require('express').Router()
   .get('/', (req, res, next) =>
-    Product.findAll({ include:  [Category] })
+    Product.findAll()
     .then(products => res.json(products))
     .catch(next))
+
   .param('productId', (req, res, next, theProductId) =>
     Product.findOne({where: {id:theProductId}, include: [Category]})
     .then(product => {
@@ -19,8 +20,21 @@ module.exports = require('express').Router()
       }
         req.product = product;
         next();
-        return null; 
+        return null;
     })
     .catch(next))
-  .get('/:productId', (req, res) => 
+
+  .get('/:productId', (req, res) =>
     res.json(req.product))
+
+  .get('/:category', (req, res) => {
+    Product.findAll({
+      where:{
+        category: {
+          $overlap: [req.params.category]
+        }
+      }
+    })
+    .then(products => res.json(products))
+    .catch(next);
+  })
