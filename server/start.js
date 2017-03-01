@@ -52,6 +52,7 @@ module.exports = app
 
   // Serve static files from ../public
   .use(express.static(resolve(__dirname, '..', 'public')))
+  .use('/public', express.static(resolve(__dirname, '..', 'public')))
 
 
 
@@ -63,7 +64,7 @@ module.exports = app
 
   .use((err, req, res, next) => {
     console.log(prettyError.render(err))
-    res.status(500).send(err)
+    res.status(err.status || 500).send(err)
     next()
   })
 

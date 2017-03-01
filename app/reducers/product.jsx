@@ -8,8 +8,10 @@ const SELECT_PRODUCT = 'SELECT_PRODUCT';
 
 /* ------------   ACTION CREATORS     ------------------ */
 
+
 export const setProducts = products => ({ type: GET_ALL_PRODUCTS, products })
 export const setOneProduct = (product) => ({type: SELECT_PRODUCT, product})
+
 
 
 /* ------------       REDUCER     ------------------ */

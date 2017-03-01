@@ -1,0 +1,21 @@
+.thumbs {
+	height: 200px;
+	width: 300px;
+}
+
+.plainList {
+	list-style-type: none;
+}
+
+.center {
+	text-align: center;
+}
+
+.floatLeft {
+	float:left;
+	margin : 5px;
+}
+
+.margin3 {
+	margin: 3px;
+}
