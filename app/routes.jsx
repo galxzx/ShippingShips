@@ -38,6 +38,7 @@ export default function Root () {
       <Router history={browserHistory}>
         <Route path="/" component={App} onEnter={onAppEnter}>
           <Route path="/products" component={ProductsContainer}/>
+          <Route path="/products/:productId" component={ProductContainer} />
           <IndexRedirect to="/products"/>
         </Route>
       </Router>

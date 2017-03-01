@@ -1,17 +1,19 @@
 import React from 'react';
-//import { Link } from 'react-router';
+import { Link } from 'react-router';
 
 export default function Product (props) {
 
   const allProducts = props.allProducts;
-  console.log('prodz',allProducts)
- 
+
+  console.log('propz',props)
+
   return (
     <div>
     <ul className='plainList'>
     {
       allProducts&&allProducts.map(product=>(
-        <div key={product.id} className='well floatLeft margin10'>  
+        <Link to={'/products/' + product.id} onClick={e=>props.selectOneProduct(product)} >
+        <div key={product.id} className='well floatLeft margin10' >  
         <li >
           <h4 className='center'>{product.title}</h4>
           <div className='row'>
@@ -28,6 +30,7 @@ export default function Product (props) {
           </div>
         </li>
         </div>
+        </Link>
 
       ))
     }

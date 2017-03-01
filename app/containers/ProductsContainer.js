@@ -1,6 +1,7 @@
 
 import Products from '../components/Products';
 import { connect } from 'react-redux';
+import { setOneProduct } from '../reducers/product';
 
 const mapStateToProps = (state) => {
   return {
@@ -11,6 +12,15 @@ const mapStateToProps = (state) => {
   };
 };
 
-const ProductsContainer = connect(mapStateToProps)(Products);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    selectOneProduct (product) {
+      dispatch(setOneProduct(product));
+    }
+  }
+}
+
+
+const ProductsContainer = connect(mapStateToProps,mapDispatchToProps)(Products);
 
 export default ProductsContainer;
