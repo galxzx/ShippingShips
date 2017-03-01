@@ -19,3 +19,9 @@
 .margin3 {
 	margin: 3px;
 }
+
+.cart-btn{
+	border-radius: 3px;
+	float: right;
+	margin-bottom: 3px;
+}

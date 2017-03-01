@@ -1,18 +1,20 @@
 import React from 'react';
 //import { Link } from 'react-router';
 
+
 export default function Product (props) {
 
   const allProducts = props.allProducts;
   console.log('prodz',allProducts)
- 
+  console.log(props.addItemToCart)
   return (
     <div>
     <ul className='plainList'>
     {
       allProducts&&allProducts.map(product=>(
-        <div key={product.id} className='well floatLeft margin10'>  
+        <div key={product.id} className='well floatLeft margin10'>
         <li >
+          <button className = 'cart-btn center btn-primary' onClick={ () => props.addItemToCart(product)}>Add To Cart!</button>
           <h4 className='center'>{product.title}</h4>
           <div className='row'>
           <div className='margin3'>
