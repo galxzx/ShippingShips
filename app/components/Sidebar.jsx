@@ -13,7 +13,7 @@ const Sidebar = (props) => {
         <div key={category}>
         <section>
           <h4 className="menu-item active">
-            <Link to='' onClick={()=>{}}>{category}</Link>
+            <Link to='/category' onClick={()=>{props.onClick(category)}}>{category}</Link>
           </h4>
         </section>
         </div>
