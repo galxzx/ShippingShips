@@ -39,16 +39,16 @@ export const reducer = (state = initState, action) => {
 
 //Dispatching functions will hit appropriate backend routes to fetch appropriate data
 
-export const loadCategories = () => dispatch => {
-  axios.get('/api/categories')
-  .then( res => {
-    dispatch(setCategories(res.data))
-  })
-  .catch( err => console.error(err))
-}
+// export const loadCategories = () => dispatch => {
+//   axios.get('/api/categories')
+//   .then( res => {
+//     dispatch(setCategories(res.data))
+//   })
+//   .catch( err => console.error(err))
+// }
 
-export const loadProductsInCat = (catId) => dispatch => {
-  axios.get(`/api/categories/${catId}`)
+export const loadProductsInCat = (category) => dispatch => {
+  axios.get(`/api/products/${category}`)
   .then(res => {
     dispatch(selCatProducts(res.data))
   })
