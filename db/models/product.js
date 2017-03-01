@@ -8,7 +8,10 @@ const Promise = require('bluebird')
 const Product = db.define( 'product',  {
 	title: {
 		type: Sequelize.STRING,
-		allowNull: false
+		allowNull: false,
+		validate : {
+			notEmpty : true
+		}
 	},
 	description: {
 		type: Sequelize.TEXT,
@@ -40,29 +43,13 @@ const Product = db.define( 'product',  {
 	classMethods: {
 
 	},
+
 	hooks: {
 		beforeCreate: (product) => {
 			if(product.categories.length < 1) throw new Error('Product must have at least one category');
 		}
 	}
-	// },
-	// hooks: {
-	// 	beforeCreate: (product) => {
-	// 		//console.log(product);
-	// 		if(product.categories.length < 1) throw new Error('Product must have at least one category');
-	// 		const categories = Promise.map(product.categories, category => {
-	// 		return	Category.findOrCreate({where: {
-	// 				name: category
-	// 			}})
-	// 			.then(([category, created]) => {
-	// 				product.addCategory(category)
-	// 			})
-	// 			.catch(console.error)
-	// 		})
 
-
-	// 	}
-	// }
 })
 
 module.exports = Product;
