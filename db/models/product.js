@@ -2,6 +2,8 @@
 
 const Sequelize = require('sequelize')
 const db = require('APP/db')
+const Category = require('./category')
+const Promise = require('bluebird')
 
 const Product = db.define( 'product',  {
 	title: {
@@ -32,20 +34,25 @@ const Product = db.define( 'product',  {
 		}
 	},
 	classMethods: {
-
-	},
-	hooks: {
-		beforeCreate: (product) => {
-			console.log(product);
-			if(product.categories.length < 1) throw new Error('Product must have at least one category');
-			// product.countCategories()
-			// .then( (count) => {
-			// 	console.log(count);
-			// 	if (count < 1) throw new Error('Product must have at least one category')
-			// })
-			// .catch(console.error);
-		}
 	}
+	// },
+	// hooks: {
+	// 	beforeCreate: (product) => {
+	// 		//console.log(product);
+	// 		if(product.categories.length < 1) throw new Error('Product must have at least one category');
+	// 		const categories = Promise.map(product.categories, category => {
+	// 		return	Category.findOrCreate({where: {
+	// 				name: category
+	// 			}})
+	// 			.then(([category, created]) => {
+	// 				product.addCategory(category)
+	// 			})
+	// 			.catch(console.error)
+	// 		})
+
+
+	// 	}
+	// }
 })
 
 module.exports = Product;
