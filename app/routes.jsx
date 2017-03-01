@@ -6,7 +6,6 @@ import {connect, Provider} from 'react-redux'
 import axios from 'axios'
 
 import store from './store'
-import Jokes from './components/Jokes'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import App from './components/App'
