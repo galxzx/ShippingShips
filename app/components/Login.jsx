@@ -8,6 +8,7 @@ export const Login = ({ login }) => (
     <input name="username" />
     <input name="password" type="password" />
     <input type="submit" value="Login" />
+    <a href="/api/auth/login/google">Login with Google</a>
   </form>
 )
 
