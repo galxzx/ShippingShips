@@ -8,8 +8,8 @@ import { setOneProduct } from '../reducers/product';
 
 const mapStateToProps = (state) => {
   return {
-  	allProducts: state.product.allProducts,
-	selectedProduct: state.product.selectedProduct
+    allProducts: state.product.allProducts,
+  	selectedProduct: state.product.selectedProduct
   };
 };
 
@@ -25,11 +25,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-const ProductsContainer = connect(mapStateToProps,mapDispatchToProps)(Products);
-
-
-
-
-
+const ProductsContainer = connect(mapStateToProps, mapDispatchToProps)(Products);
 
 export default ProductsContainer;
