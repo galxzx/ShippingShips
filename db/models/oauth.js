@@ -36,7 +36,7 @@ OAuth.V2 = (accessToken, refreshToken, profile, done) =>{
     }
   })
   .spread(oauth => {
-    //console.log(profile)
+    console.log(profile)
     debug('provider:%s will log in user:{name=%s uid=%s}',
       profile.provider,
       profile.displayName,
@@ -56,7 +56,7 @@ OAuth.V2 = (accessToken, refreshToken, profile, done) =>{
   .then(({ oauth, user }) => user ||
     User.create({
       name: profile.displayName,
-      email: profile.emails[0].value
+      //email: profile.emails[0].value
     })
     .then(user => db.Promise.props({
       user,
