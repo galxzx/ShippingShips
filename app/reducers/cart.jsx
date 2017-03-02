@@ -22,7 +22,19 @@ const reducer = (state = initState, action) => {
 	const newState = Object.assign({}, state);
 	switch(action.type){
 		case ADD_ITEM_TO_CART:
-			newState.cart = [...newState.cart, action.item]
+			let isDuplicate = false;
+			newState.cart.forEach( entry => {
+				if(entry.info == action.item){
+					entry.quantity++;
+					isDuplicate = true;
+				}
+			})
+			if(!isDuplicate){
+				newState.cart = [...newState.cart, {
+					info: action.item,
+					quantity: 1
+				}]
+			}
 			break;
 
 		case REMOVE_ITEM_FROM_CART:
@@ -34,7 +46,7 @@ const reducer = (state = initState, action) => {
 		case CALCULATE_TOTAL:
 			let newTotal = 0;
 			newState.cart.forEach( item => {
-				newTotal += total.price;
+				newTotal += item.info.price * item.quantity
 			});
 			newState.total = newTotal;
 			break;
@@ -48,6 +60,11 @@ const reducer = (state = initState, action) => {
 /* ------------       DISPATCHERS     ------------------ */
 export const addItemToCart = (item) => dispatch => {
 	dispatch(addItem(item));
+	dispatch(calculateTotal());
+}
+
+export const removeItemFromCart = (item) => dispatch => {
+	dispatch(removeItem(item));
 	dispatch(calculateTotal());
 }
 
