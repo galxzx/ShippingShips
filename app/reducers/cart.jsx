@@ -4,12 +4,13 @@ import axios from 'axios';
 
 const ADD_ITEM_TO_CART = 'ADD_ITEM_TO_CART';
 const REMOVE_ITEM_FROM_CART = 'REMOVE_ITEM_FROM_CART';
+const CALCULATE_TOTAL = 'CALCULATE_TOTAL'
 
 /* ------------   ACTION CREATORS     ------------------ */
 
 export const addItem = item => ({ type: ADD_ITEM_TO_CART, item});
 export const removeItem = item => ({type: REMOVE_ITEM_FROM_CART, item})
-
+export const calculateTotal = () => ( { type: CALCULATE_TOTAL})
 /* ------------       REDUCER     ------------------ */
 
 const initState = {
@@ -30,6 +31,14 @@ const reducer = (state = initState, action) => {
 				newState.cart.splice( newState.cart.indexOf(action.item), 1);
 			break;
 
+		case CALCULATE_TOTAL:
+			let newTotal = 0;
+			newState.cart.forEach( item => {
+				newTotal += total.price;
+			});
+			newState.total = newTotal;
+			break;
+
 		default:
 			return state
 	}
@@ -38,8 +47,8 @@ const reducer = (state = initState, action) => {
 
 /* ------------       DISPATCHERS     ------------------ */
 export const addItemToCart = (item) => dispatch => {
-	console.log("WOO ABOUT TO DISPATCH")
-	dispatch(addItem(item))
+	dispatch(addItem(item));
+	dispatch(calculateTotal());
 }
 
 export default reducer;

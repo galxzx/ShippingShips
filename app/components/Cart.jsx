@@ -11,7 +11,7 @@ export default function Cart (props){
 					{
 						cart && cart.map( item => {
 							return (
-								<li key = {item.id}>
+								<li key = {item.id} className= "cart-item">
 									<button>Remove from Cart</button>
 									<h3>Title: {item.title}</h3>
 									<p>Description: {item.description}</p>

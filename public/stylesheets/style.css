@@ -25,3 +25,9 @@
 	float: right;
 	margin-bottom: 3px;
 }
+
+.cart-item{
+	border-style: double;
+	border-width: 5px;
+	border-color: #034f84;
+}
