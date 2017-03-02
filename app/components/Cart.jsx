@@ -13,8 +13,8 @@ export default function Cart (props){
 							return (
 								<li key = {item.id}>
 									<button>Remove from Cart</button>
-									<h3>{item.title}</h3>
-									<p>{item.description}</p>
+									<h3>Title: {item.title}</h3>
+									<p>Description: {item.description}</p>
 									<p>Price: ${item.price}</p>
 								</li>
 							);
