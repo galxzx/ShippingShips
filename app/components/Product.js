@@ -5,11 +5,12 @@ export default function Product (props) {
 
 
   const product = props.selectedProduct;
+  const addItemToCart = props.addItemToCart
   console.log('prizz', product)
- 
+
   return (
     <div>
-      <h3>{product.title}</h3>
+      <span><h3>{product.title}</h3> <button className = 'cart-btn center btn-primary' onClick={ () => addItemToCart(product)} >Add To Cart!</button> </span>
       <p>{product.description}</p>
       <p>Price: ${product.price}</p>
       <p>No. Available: {product.inventory}</p>

@@ -8,19 +8,19 @@ export default function Cart (props){
 	return (
 			<div>
 				<h2> This is your cart! </h2>
-				<ol>
+				<div>
 					{
 						cart && cart.map( entry => {
 							let item = entry.info
 							return (
 							    <div className='container-fluid cart-item'>
-							    	<li key = {item.id} className= "col-xs-6">
+							    	<div key = {item.id} className= "col-xs-6 unstyled">
 										<button>Remove from Cart</button>
 										<h3>Title: {item.title}</h3>
 										<p>Quantity: {entry.quantity}</p>
 										<p>Description: {item.description}</p>
 										<p>Price: ${item.price}</p>
-									</li>
+									</div>
 									<div className='col-xs-6'>
 								    	<img src={item.photoURL} className='img-responsive'/>
 								    </div>
@@ -29,7 +29,7 @@ export default function Cart (props){
 							);
 						})
 					}
-				</ol>
+				</div>
 				<h3> Total: ${total}</h3>
 
 	        </div>

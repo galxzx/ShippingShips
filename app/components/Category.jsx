@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
-import Products from './Products'
+import ProductsContainer from '../containers/ProductsContainer'
 
 export default function Category (props) {
   console.log('category Props ======> ', props)
   return (
     <div>
-      <Products allProducts={props.categoryProducts} onClickCat={props.onClickCat} />
+      <ProductsContainer allProducts={props.categoryProducts} onClickCat={props.onClickCat} />
     </div>
   )
 }
