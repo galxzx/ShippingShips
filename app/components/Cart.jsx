@@ -21,7 +21,7 @@ export default function Cart (props){
 										<p>Description: {item.description}</p>
 										<p>Price: ${item.price}</p>
 									</li>
-									<div className='col-xs-4'>
+									<div className='col-xs-6'>
 								    	<img src={item.photoURL} className='img-responsive'/>
 								    </div>
 							    </div>
