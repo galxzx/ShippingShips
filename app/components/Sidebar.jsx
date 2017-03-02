@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import Login from './Login';
 
 const Sidebar = (props) => {
 
@@ -8,6 +9,10 @@ const Sidebar = (props) => {
   return (
     <div>
       <img src="" className="logo" />
+      <section>
+          <Login />
+      </section>
+        <h3>Categories</h3>
       {categories.map((category) => {
         return (
         <div key={category}>
