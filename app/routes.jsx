@@ -41,6 +41,7 @@ export default function Root () {
         <Route path="/" component={App} onEnter={onAppEnter}>
           <Route path="/products" component={ProductsContainer} />
           <Route path="/product" component={ProductContainer} />
+          <Route path="/cart" component={CartContainer} />
           <Route path="/category" component={CategoryContainer} />
           <IndexRedirect to="/products"/>
         </Route>
