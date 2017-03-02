@@ -9,6 +9,7 @@ import store from './store'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import App from './components/App'
+import CartContainer from './containers/CartContainer'
 import ProductContainer from './containers/ProductContainer'
 import ProductsContainer from './containers/ProductsContainer'
 import CategoryContainer from './containers/CategoryContainer'
@@ -40,6 +41,7 @@ export default function Root () {
         <Route path="/" component={App} onEnter={onAppEnter}>
           <Route path="/products" component={ProductsContainer} />
           <Route path="/product" component={ProductContainer} />
+          <Route path="/cart" component={CartContainer} />
           <Route path="/category" component={CategoryContainer} />
           <IndexRedirect to="/products"/>
         </Route>

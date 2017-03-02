@@ -12,11 +12,9 @@ export default function Product (props) {
 
     if ($(evt.target).hasClass('cart-btn')) {
       evt.preventDefault()
-      console.log(addItemToCart);
       addItemToCart(product)
     }
     else {
-      console.log(selectOneProduct)
       selectOneProduct(product);
     }
   }
