@@ -18,7 +18,9 @@ const mapDispatchToProps = (dispatch) => {
     selectOneProduct (product) {
       dispatch(setOneProduct(product));
     },
-    addItemToCart
+    addItemToCart (product) {
+      dispatch(addItemToCart(product))
+    }
   }
 }
 
