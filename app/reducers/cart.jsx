@@ -38,9 +38,16 @@ const reducer = (state = initState, action) => {
 			break;
 
 		case REMOVE_ITEM_FROM_CART:
-			let itemIndex = newState.cart.indexOf(action.item);
-			if(itemIndex)
-				newState.cart.splice( newState.cart.indexOf(action.item), 1);
+			let itemIndex = -1;
+			newState.cart.forEach( (entry, idx) => {
+				if(entry.info == action.item)
+					itemIndex = idx;
+			})
+			console.log("I found this item on the cart redux array at index:", itemIndex)
+			if(itemIndex >= 0){
+				console.log("i like splicing an imma cut ya");
+				newState.cart.splice( itemIndex, 1);
+			}
 			break;
 
 		case CALCULATE_TOTAL:
