@@ -22,11 +22,12 @@ export default function Cart (props){
 							return (
 							    <div key = {item.id} className='container-fluid cart-item'>
 							    	<div className= "col-xs-6 unstyled">
-										<button onClick={ () => removeItem(item)}>Remove from Cart</button>
+
 										<h3>Title: {item.title}</h3>
 										<p>Quantity: {entry.quantity}</p>
 										<p>Description: {item.description}</p>
 										<p>Price: ${item.price}</p>
+										<button className = "cart-btn btn-danger" onClick={ () => removeItem(item)}>Remove from Cart</button>
 									</div>
 									<div className='col-xs-6'>
 								    	<img src={item.photoURL} className='img-responsive'/>
