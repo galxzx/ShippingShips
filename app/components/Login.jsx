@@ -8,6 +8,9 @@ export const Login = ({ login }) => (
     <input name="username" />
     <input name="password" type="password" />
     <input type="submit" value="Login" />
+    <a href="/api/auth/login/google">Login with Google</a>
+    <a href="/api/auth/login/facebook">Login with Facebook</a>
+
   </form>
 )
 
