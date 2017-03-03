@@ -4,20 +4,31 @@ export  function Signup ({signup}){
 
 
   return (
-    <well>
-     <form onSubmit={evt => {
-    evt.preventDefault()
-    signup(evt.target.username.value, evt.target.email.value, evt.target.password.value)
-  } }>
-    <input name="username" placeholder="username"/>
-    <input name="email" placeholder="email" />
-    <input name="password" type="password" placeholder="password"/>
-    <input type="submit" value="Login" />
-    <a href="/api/auth/login/google"><img className="img img-responsive" src="/public/images/btns/google/1x/btn_google_signin_dark_normal_web.png"/></a>
-    <a href="/api/auth/login/facebook"><img className="img img-responsive" src="/public/images/btns/ZW4QC.png" /></a>
+    <div className="well floatleft margin10">
+      <h4>Sign up for a new account</h4>
 
-  </form>
-  </well>
+      <form onSubmit={evt => {
+      evt.preventDefault()
+      signup(evt.target.username.value, evt.target.email.value, evt.target.password.value)
+    } }>
+        <div className="form-group">
+          <label>Name:  </label>
+          <input name="username" placeholder="name"/>
+        </div>
+        <div className="form-group">
+          <label>Email:  </label>
+          <input name="email" placeholder="email" />
+        </div>
+        <div className="form-group">
+          <label>Password:  </label>
+          <input name="password" type="password" placeholder="password"/>
+        </div>
+        <button type="submit" value="Signup">Sign Up </button>
+        <a href="/api/auth/login/google"><img className="img img-responsive" src="/public/images/btns/google/1x/btn_google_signin_dark_normal_web.png"/></a>
+        <a href="/api/auth/login/facebook"><img className="img img-responsive" src="/public/images/btns/ZW4QC.png" /></a>
+
+    </form>
+  </div>
     );
 }
 
