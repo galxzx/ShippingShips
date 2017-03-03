@@ -1,5 +1,6 @@
 import Category from '../components/Category';
 import { connect } from 'react-redux';
+import { addItemToCart } from 'APP/app/reducers/cart'
 
 import { setOneProduct } from '../reducers/product';
 
@@ -14,7 +15,10 @@ const mapDisptachToProps = (dispatch) => {
   return {
     onClickCat (category)  {
       dispatch(loadProductsInCat(category))
-    },   
+    },
+    addItemToCart: (item) => {
+    	dispatch(addItemToCart(item))
+    },
     selectOneProduct (product) {
       dispatch(setOneProduct(product));
     }

@@ -7,7 +7,7 @@ export default function Product (props) {
 
   const product = props.selectedProduct;
   console.log('prizz', product)
- 
+
   return (
     <div>
       <h3>{product.title}</h3>

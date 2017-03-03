@@ -6,7 +6,7 @@ export default function Category (props) {
   console.log('category Props ======> ', props)
   return (
     <div>
-      <Products allProducts={props.categoryProducts} onClickCat={props.onClickCat} />
+      <Products addItemToCart= {props.addItemToCart} allProducts={props.categoryProducts} onClickCat={props.onClickCat} />
     </div>
   )
 }

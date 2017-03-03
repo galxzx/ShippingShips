@@ -1,5 +1,6 @@
 import Cart from '../components/Cart';
 import { connect } from 'react-redux';
+import {removeItemFromCart} from 'APP/app/reducers/cart'
 
 const mapStateToProps = (state) => {
 	return {
@@ -8,6 +9,14 @@ const mapStateToProps = (state) => {
 	}
 }
 
-const CartContainer = connect(mapStateToProps)(Cart);
+const mapDispatch = dispatch => {
+	return {
+		removeItemFromCart: (item) => {
+			dispatch(removeItemFromCart(item))
+		}
+	}
+}
+
+const CartContainer = connect(mapStateToProps, mapDispatch)(Cart);
 
 export default CartContainer

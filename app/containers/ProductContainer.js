@@ -1,6 +1,7 @@
 
 import Product from '../components/Product';
 import { connect } from 'react-redux';
+import {addItemToCart} from 'APP/app/reducers/cart'
 
 const mapStateToProps = (state) => {
   return {
@@ -8,6 +9,14 @@ const mapStateToProps = (state) => {
   };
 };
 
-const ProductContainer = connect(mapStateToProps)(Product);
+const mapDispatch = dispatch => {
+	return {
+		addItemToCart (product) {
+			dispatch(addItemToCart(product));
+		}
+	}
+}
+
+const ProductContainer = connect(mapStateToProps, mapDispatch)(Product);
 
 export default ProductContainer;
