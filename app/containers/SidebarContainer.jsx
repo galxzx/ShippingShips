@@ -6,7 +6,8 @@ import { setOneProduct } from '../reducers/product';
 
 const mapStateToProps = (state) => {
   return {
-    category: state.category
+    category: state.category,
+    auth: state.auth
   };
 };
 
