@@ -2,7 +2,7 @@
 
 const Sequelize = require('sequelize')
 const db = require('APP/db')
-const Category = require('./category')
+const Review = require('./review')
 const Promise = require('bluebird')
 
 const Product = db.define( 'product',  {
@@ -35,6 +35,9 @@ const Product = db.define( 'product',  {
 	}
 
 }, {
+	getterMethods: {
+
+	},
 	instanceMethods: {
 		addInventory: function(numToAdd){
 			this.inventory = this.inventory + numToAdd;
