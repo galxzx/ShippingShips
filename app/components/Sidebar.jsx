@@ -28,7 +28,9 @@ const Sidebar = (props) => {
         </div>
         )
       })}
-
+      <section>
+        <Link to={'/cart'}> <button> Show Cart </button> </Link>
+      </section>
     </div>
   );
 }

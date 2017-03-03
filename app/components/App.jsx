@@ -10,7 +10,6 @@ export default function App ({ children }) {
         <SidebarContainer />
       </div>
       <div className="col-xs-10">
-        <Link to={'/cart'}> <button>Show Cart </button> </Link>
         { children }
       </div>
 
