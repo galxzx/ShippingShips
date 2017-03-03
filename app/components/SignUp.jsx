@@ -32,7 +32,7 @@ export  function Signup ({signup}){
     );
 }
 
-import {signup} from 'APP/app/reducers/auth'
+import {signup} from 'APP/app/reducers/signup'
 import {connect} from 'react-redux'
 
 export default connect (
