@@ -1,14 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router';
 import Login from './Login';
+import Logout from './Logout';
 
 const Sidebar = (props) => {
 
   const categories = props.category.categories;
   const auth = props.auth;
   var isLogin;
-  if(auth) isLogin = null;
-  else isLogin = <Login />
+
+  if(!auth) isLogin = <Login />
+  else isLogin = <Logout />
 
   return (
     <div>
