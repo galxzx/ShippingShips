@@ -138,5 +138,6 @@ auth.post('/logout', (req, res, next) => {
   res.redirect('/api/auth/whoami')
 })
 
+
 module.exports = auth
 
