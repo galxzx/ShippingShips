@@ -43,8 +43,7 @@ export default function Root () {
           <Route path="/products" component={ProductsContainer} />
           <Route path="/product" component={ProductContainer} />
           <Route path="/cart" component={CartContainer} />
-          <Route path="/category" component={CategoryContainer} />
-          <route path="/signup" component={SignUp} />
+          <Route path="/signup" component={SignUp} />
           <IndexRedirect to="/products"/>
         </Route>
       </Router>

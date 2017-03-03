@@ -4,12 +4,14 @@ import { connect } from 'react-redux';
 
 import {addItemToCart} from 'APP/app/reducers/cart'
 import { setOneProduct } from '../reducers/product';
+import {loadProductsInCat} from '../reducers/categories'
 
 
 const mapStateToProps = (state) => {
   return {
     allProducts: state.product.allProducts,
-  	selectedProduct: state.product.selectedProduct
+  	selectedProduct: state.product.selectedProduct,
+    categoryProducts: state.category.selCatProducts
   };
 };
 
@@ -20,7 +22,10 @@ const mapDispatchToProps = (dispatch) => {
     },
     addItemToCart (product) {
       dispatch(addItemToCart(product))
-    }
+    },
+    selectCategory (category) {
+      dispatch(loadProductsInCat(category))
+    },
   }
 }
 
