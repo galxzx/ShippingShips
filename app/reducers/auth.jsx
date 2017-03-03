@@ -16,7 +16,7 @@ export const authenticated = user => ({
 export const signup = (username, email, password) =>
   dispatch =>
     axios.post('/api/users', {name:username, email, password})
-    .then(() => dispatch(login(username, password)))
+    .then(() => dispatch(login(email, password)))
     .catch(() => dispatch(whoami()))
 
 
