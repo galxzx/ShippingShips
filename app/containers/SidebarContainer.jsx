@@ -5,7 +5,8 @@ import {loadProductsInCat} from '../reducers/categories'
 
 const mapStateToProps = (state) => {
   return {
-    category: state.category
+    category: state.category,
+    auth: state.auth
   };
 };
 

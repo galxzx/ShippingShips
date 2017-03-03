@@ -5,13 +5,15 @@ import Login from './Login';
 const Sidebar = (props) => {
 
   const categories = props.category.categories;
-  console.log('================this is categories', categories)
+  const auth = props.auth;
+  var isLogin;
+  if(auth) isLogin = null;
+  else isLogin = <Login />
+
   return (
     <div>
       <img src="" className="logo" />
-      <section>
-          <Login />
-      </section>
+        {isLogin}
         <h3>Categories</h3>
       {categories.map((category) => {
         return (
