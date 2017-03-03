@@ -3,20 +3,24 @@ import { Link } from 'react-router';
 
 
 export default function Product (props) {
+  console.log('prezzles',props)
 
-  const allProducts = props.allProducts;
-  const selectOneProduct = props.selectOneProduct;
+
+ let allProducts = props.categoryProducts.length ? props.categoryProducts : props.allProducts;
+
   const addItemToCart = props.addItemToCart;
 
-  const handleClick= (evt, product) => {
+  const handleCartClick= (evt, product) => {
+      //evt.preventDefault()
+      props.addItemToCart(product)
+  }
 
-    if ($(evt.target).hasClass('cart-btn')) {
-      evt.preventDefault()
-      addItemToCart(product)
-    }
-    else {
-      selectOneProduct(product);
-    }
+  const handleProductClick= (evt,product) => {
+      props.selectOneProduct(product)
+  }
+
+  const handleCategoryClick= (evt,product) => {
+      props.selectCategory(product)
   }
 
   return (
@@ -25,26 +29,34 @@ export default function Product (props) {
     {
       allProducts&&allProducts.map(product=>(
 
-        <Link to={'/product'} onClick={e=> handleClick(e, product)} >
-        <div key={product.id} className='well margin10' >
+        
+        <div key={product.id} className='well floatLeft margin10' >
         <li >
-          <button className = 'cart-btn center btn-primary' >Add To Cart!</button>
+          <button className = 'cart-btn center btn-primary' onClick={e=>handleCartClick(e,product)} >Add To Cart</button>
           <h4 className='center'>{product.title}</h4>
           <div className='row'>
           <div className='margin3'>
 
+          <Link to={'/product'} onClick={e=>handleProductClick(e,product)} >
           <img src={product.photoURL}  className='img-thumbnail img-responsive thumbs' />
+          </Link>
           </div>
+           </div>
           <p>Price: ${product.price}</p>
           {
             product.categories.map(category=>(
-              <button key={category.id} className='btn btn-xs btn-primary margin3'>{category.name}</button>
+              <button key={category} className='btn btn-xs btn-primary margin3' onClick={e=>handleCategoryClick(e,category)}>{category}</button>
             ))
           }
-          </div>
+          <p>Average Stars:
+          {
+            (product.reviews.reduce( (a,b)=>a + b.stars,0)/product.reviews.length) || "Not Yet Rated"
+          }
+          </p>
+        
         </li>
         </div>
-        </Link>
+        
 
       ))
     }

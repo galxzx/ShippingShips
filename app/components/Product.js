@@ -4,6 +4,7 @@ import React from 'react';
 export default function Product (props) {
 
 
+
   const product = props.selectedProduct;
   console.log('prizz', product)
 
@@ -13,6 +14,7 @@ export default function Product (props) {
       <p>{product.description}</p>
       <p>Price: ${product.price}</p>
       <p>No. Available: {product.inventory}</p>
+      <p>AverageStars: {product.averageStars}</p>
       <div className='row'>
         <img src={product.photoURL}/>
       </div>
