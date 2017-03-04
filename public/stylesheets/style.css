@@ -24,6 +24,10 @@ body {
 	margin: 3px;
 }
 
+.margin10 {
+	margin: 10px;
+}
+
 .cart-btn{
 	border-radius: 3px;
 	float: right;
@@ -37,4 +41,12 @@ body {
 	border-width: 5px;
 	border-color: #034f84;
 	padding: 5px;
+}
+
+.glyphicon-star {
+	color:blue;
+}
+
+.date {
+	color: red;
 }

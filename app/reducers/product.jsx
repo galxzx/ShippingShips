@@ -4,6 +4,7 @@ import axios from 'axios';
 
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
 const SELECT_PRODUCT = 'SELECT_PRODUCT';
+const SHOW_REVIEW_FORM = 'SHOW_REVIEW_FORM';
 
 
 /* ------------   ACTION CREATORS     ------------------ */
@@ -11,6 +12,7 @@ const SELECT_PRODUCT = 'SELECT_PRODUCT';
 
 export const setProducts = products => ({ type: GET_ALL_PRODUCTS, products })
 export const setOneProduct = (product) => ({type: SELECT_PRODUCT, product})
+export const showReviewForm = (bool) => ({type: SHOW_REVIEW_FORM, bool})
 
 
 
@@ -19,7 +21,8 @@ export const setOneProduct = (product) => ({type: SELECT_PRODUCT, product})
 
 const initState = {
 	allProducts: [],
-	selectedProduct: {}
+	selectedProduct: {},
+	showReviewForm: false
 }
 
 export const reducer = (state = initState, action) => {
@@ -32,6 +35,10 @@ export const reducer = (state = initState, action) => {
 
 		case SELECT_PRODUCT:
 			newState.selectedProduct = action.product
+			break;
+
+		case SHOW_REVIEW_FORM:
+			newState.showReviewForm = action.bool
 			break;
 
 		default:
