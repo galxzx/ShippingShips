@@ -11,10 +11,16 @@ module.exports = require('express').Router()
 		.then(users => res.json(users))
 		.catch(next))
 	.post('/', (req, res, next) => {
-	    console.log(req.body)
 		return User.create(req.body)
 		.then(user => res.status(201).json(user))
-		.catch(next)
+		.catch((err)=>{
+			//err.status = 303;
+			if(err.message === 'Validation error')
+			//res.status(303).send({message: "Invalid email: user may already exist"})
+			err.status = 303;
+			next(err)
+
+		})
 	})
 	.get('/:id', mustBeLoggedIn, (req, res, next) =>
 		User.findById(req.params.id)

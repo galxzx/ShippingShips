@@ -40,7 +40,13 @@ export const loadProductsInCat = (category) => dispatch => {
 export const signup = (username, email, password) =>
   dispatch =>
     axios.post('/api/users', {name:username, email, password})
-    .then(() => dispatch(login(email, password)))
-    .catch((err) => console.error(err))
+    .then(() => {
+      dispatch(login(email, password))
+    })
+    .catch((err) => {
+      dispatch(setSignupMessage('Invalid email or account with that email already exists'))
+    })
+    .then(dispatch(whoami()))
+
 
 export default reducer

@@ -4,19 +4,19 @@ import { Link } from 'react-router'
 export const Login = ({ login }) => (
   <div>
     <h6>Already Registered?</h6>
-    <form className="text-center" onSubmit={evt => {
+    <form onSubmit={evt => {
       evt.preventDefault()
       login(evt.target.username.value, evt.target.password.value)
     } }>
       <input name="username" placeholder="username" />
       <input name="password" type="password" placeholder="password"/>
-      <input type="submit" value="Login" className=" btn-block" />
+      <input type="submit" value="Login" className="btn btn-block" />
       <a href="/api/auth/login/google"><img className="img img-responsive" src="/public/images/btns/google/1x/btn_google_signin_dark_normal_web.png"/></a>
       <a href="/api/auth/login/facebook"><img className="img img-responsive" src="/public/images/btns/ZW4QC.png" /></a>
 
     </form>
-    <h6>Sign up here!</h6>
-    <Link to="/signup"><button className="btn-block">Create Account</button></Link>
+    <h6>Create a new Account!</h6>
+    <Link to="/signup"><button className="btn btn-block">Sign Up</button></Link>
   </div>
 )
 

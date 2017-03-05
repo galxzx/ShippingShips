@@ -4,10 +4,10 @@ import Login from './Login';
 import Logout from './Logout';
 import WhoAmI from './WhoAmI';
 
-const Sidebar = (props) => {
+const Sidebar = ({category, auth, onClick}) => {
 
-  const categories = props.category.categories;
-  const auth = props.auth;
+  const categories = category.categories;
+  const selectedCategory = category.selectedCategory
   var isLogin;
 
   if(!auth) isLogin = <Login />
@@ -18,19 +18,20 @@ const Sidebar = (props) => {
 
         {isLogin}
         <h3>Categories</h3>
-      {categories.map((category) => {
+      {categories.map((curCategory) => {
         return (
-        <div key={category}>
+        <div key={curCategory}>
         <section>
           <h4 className="menu-item active">
-            <Link to='/products' onClick={()=>{props.onClick(category)}}>{category}</Link>
+            <Link to='/products' className={"category" + (curCategory === selectedCategory ? " selCat" : "" )} onClick={()=>{
+              onClick(curCategory)}}>{curCategory}</ Link>
           </h4>
         </section>
         </div>
         )
       })}
       <section>
-        <Link to={'/cart'}> <button> Show Cart </button> </Link>
+        <Link to={'/cart'}> <button className="btn-block"> Show Cart </button> </Link>
       </section>
     </div>
   );
