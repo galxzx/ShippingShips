@@ -23,7 +23,7 @@ export  function Signup ({signup}){
           <label>Password:  </label>
           <input name="password" type="password" placeholder="password"/>
         </div>
-        <button type="submit" value="Signup">Sign Up </button>
+        <button type="submit" value="Signup" className="btn btn-primary">Sign Up </button>
         <a href="/api/auth/login/google"><img className="img img-responsive" src="/public/images/btns/google/1x/btn_google_signin_dark_normal_web.png"/></a>
         <a href="/api/auth/login/facebook"><img className="img img-responsive" src="/public/images/btns/ZW4QC.png" /></a>
 

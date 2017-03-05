@@ -4,11 +4,13 @@ import Login from './Login';
 import Logout from './Logout';
 import WhoAmI from './WhoAmI';
 
-const Sidebar = ({category, auth, onClick}) => {
+const Sidebar = ({category, auth, onClick, cart}) => {
 
   const categories = category.categories;
   const selectedCategory = category.selectedCategory
   var isLogin;
+  const items = cart.cart;
+
 
   if(!auth) isLogin = <Login />
  //else isLogin = <Logout />
@@ -33,9 +35,19 @@ const Sidebar = ({category, auth, onClick}) => {
       </section>
     </div>
       <section>
-        <Link to={'/cart'}> <button className="btn-block"> Show Cart </button> </Link>
+        <Link to={'/cart'}> <button className="btn-block btn btn-primary"> Show Cart </button> </Link>
+      </section>
+      <section>
+        <h4>Your Items</h4>
+        {items.map(item => {
+          return (
+            <p key={item.info.id}>{item.info.title.slice(0,10)}  <strong>QTY</strong>:{item.quantity}</p>
+          )
+        })}
+        <h5>Total: ${cart.total}</h5>
       </section>
     </div>
+
   );
 }
 

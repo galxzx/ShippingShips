@@ -7,7 +7,8 @@ import { setOneProduct } from '../reducers/product';
 const mapStateToProps = (state) => {
   return {
     category: state.category,
-    auth: state.auth
+    auth: state.auth,
+    cart: state.cart
   };
 };
 
