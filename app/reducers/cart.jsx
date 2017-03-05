@@ -15,7 +15,8 @@ export const calculateTotal = () => ( { type: CALCULATE_TOTAL})
 
 const initState = {
 	cart: [],
-	total: 0
+	total: 0,
+	items: 0
 }
 
 const reducer = (state = initState, action) => {
@@ -50,10 +51,13 @@ const reducer = (state = initState, action) => {
 
 		case CALCULATE_TOTAL:
 			let newTotal = 0;
+			let numItems = 0;
 			newState.cart.forEach( item => {
 				newTotal += item.info.price * item.quantity
+				numItems += item.quantity
 			});
 			newState.total = newTotal;
+			newState.items = numItems;
 			break;
 
 		default:

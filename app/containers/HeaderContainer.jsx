@@ -1,8 +1,6 @@
-
-import Sidebar from '../components/Sidebar';
+import Header from '../components/Header';
 import { connect } from 'react-redux';
 import {loadProductsInCat, setCategory} from '../reducers/categories'
-import { setOneProduct } from '../reducers/product';
 
 const mapStateToProps = (state) => {
   return {
@@ -12,19 +10,16 @@ const mapStateToProps = (state) => {
   };
 };
 
+
 const mapDispatchToProps = (dispatch) => {
   return {
     onClick (category) {
-      console.log('this is category', category)
       dispatch(loadProductsInCat(category))
       dispatch(setCategory(category))
-    },
-
-    selectOneProduct (product) {
-      dispatch(setOneProduct(product))
-  	}
+    }
   }
  }
-const SidebarContainer = connect(mapStateToProps, mapDispatchToProps)(Sidebar);
 
-export default SidebarContainer;
+const HeaderContainer = connect(mapStateToProps, mapDispatchToProps)(Header);
+
+export default HeaderContainer;

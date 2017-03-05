@@ -1,4 +1,6 @@
 import axios from 'axios'
+import {setSignupMessage} from './signup'
+import { browserHistory } from 'react-router'
 
 const reducer = (state=null, action) => {
   switch(action.type) {
@@ -13,11 +15,7 @@ export const authenticated = user => ({
   type: AUTHENTICATED, user
 })
 
-export const signup = (username, email, password) =>
-  dispatch =>
-    axios.post('/api/users', {name:username, email, password})
-    .then(() => dispatch(login(email, password)))
-    .catch(() => dispatch(whoami()))
+
 
 
 
@@ -25,7 +23,10 @@ export const login = (username, password) =>
   dispatch =>
     axios.post('/api/auth/login/local',
       {username, password})
-      .then(() => dispatch(whoami()))
+      .then(() => {
+        dispatch(whoami())
+        browserHistory.push('/products')
+      })
       .catch(() => dispatch(whoami()))
 
 export const logout = () =>
