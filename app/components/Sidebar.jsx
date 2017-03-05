@@ -17,19 +17,21 @@ const Sidebar = ({category, auth, onClick}) => {
     <div>
 
         {isLogin}
+        <div >
+        <section>
         <h3>Categories</h3>
       {categories.map((curCategory) => {
         return (
-        <div key={curCategory}>
-        <section>
-          <h4 className="menu-item active">
+
+          <h4 key={curCategory}className="menu-item active">
             <Link to='/products' className={"category" + (curCategory === selectedCategory ? " selCat" : "" )} onClick={()=>{
               onClick(curCategory)}}>{curCategory}</ Link>
           </h4>
-        </section>
-        </div>
+
         )
       })}
+      </section>
+    </div>
       <section>
         <Link to={'/cart'}> <button className="btn-block"> Show Cart </button> </Link>
       </section>

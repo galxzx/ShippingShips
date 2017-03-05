@@ -10,6 +10,7 @@ body {
 .navbar-default {
 	background: #022b3a;
 	width: 100%;
+	color: #a4b6c1;
 }
 
 .wrap {
@@ -21,9 +22,14 @@ a {
 	color : #022b3a;
 }
 
-button.btn-primary {
+.btn-primary {
 	background: #022b3a;
 }
+
+.login{
+	margin-top: 10px;
+}
+
 .thumbs {
 	height: 200px;
 	width: 300px;

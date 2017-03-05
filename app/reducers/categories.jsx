@@ -14,8 +14,8 @@ export const selCatProducts = (products) => ({type: SET_CAT_PRODUCTS, products})
 
 
 const initState = {
-  selectedCategory: "",
-  categories: ['powerboat', 'sailboat', 'commercial', 'pleasurecraft', 'military'],
+  selectedCategory: 'All Boats',
+  categories: ['All Boats', 'powerboat', 'sailboat', 'commercial', 'pleasurecraft', 'military'],
   selCatProducts: []
 }
 
