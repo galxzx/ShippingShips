@@ -3,8 +3,6 @@ import { Link } from 'react-router';
 
 
 export default function Product (props) {
-  console.log('prezzles',props)
-
 
  let allProducts = props.categoryProducts.length ? props.categoryProducts : props.allProducts;
 

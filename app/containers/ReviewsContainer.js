@@ -5,7 +5,11 @@ import { connect } from 'react-redux';
 const mapStateToProps = (state) => {
   return {
     selectedProduct: state.product.selectedProduct,
-    showReviewForm: state.product.showReviewForm
+    showReviewForm: state.product.showReviewForm,
+    newestReview: state.review.newestReview,
+    allReviews: state.review.allReviews,
+    user: state.auth
+
   };
 };
 

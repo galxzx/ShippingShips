@@ -41,7 +41,8 @@ export default function Root () {
       <Router history={browserHistory}>
         <Route path="/" component={App} onEnter={onAppEnter}>
           <Route path="/products" component={ProductsContainer} />
-          <Route path="/product" component={ProductContainer} />
+          <Route path="/product" component={ProductContainer} onEnter={onAppEnter} />
+          <Route path="/productReview" component={ProductContainer} onEnter={onAppEnter} />
           <Route path="/cart" component={CartContainer} />
           <Route path="/signup" component={SignUp} />
           <IndexRedirect to="/products"/>

@@ -8,10 +8,13 @@ import {loadProductsInCat} from '../reducers/categories'
 
 
 const mapStateToProps = (state) => {
+  console.log(state,'state')
   return {
     allProducts: state.product.allProducts,
   	selectedProduct: state.product.selectedProduct,
-    categoryProducts: state.category.selCatProducts
+    categoryProducts: state.category.selCatProducts,
+    showForm: state.review.showReviewForm,
+    newestReview: state.review.newestReview
   };
 };
 

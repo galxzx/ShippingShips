@@ -7,7 +7,9 @@ import {showReviewForm} from 'APP/app/reducers/product'
 const mapStateToProps = (state) => {
   return {
     selectedProduct: state.product.selectedProduct,
-    showReviewForm: state.product.showReviewForm
+    showReviewForm: state.review.showReviewForm,
+    allReviews: state.review.allReviews,
+    user: state.auth
   };
 };
 
@@ -18,7 +20,6 @@ const mapDispatch = dispatch => {
 		},
 		showRevFormFunc (bool) {
 			dispatch(showReviewForm(bool))
-
 		}
 	}
 }
