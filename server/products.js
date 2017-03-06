@@ -27,7 +27,6 @@ module.exports = require('express').Router()
 
   .get('/:productId', (req, res, next) =>
     res.json(req.product)
-    .catch(next)
     )
 
   .get('/cat/:category', (req, res, next) => {
