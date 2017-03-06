@@ -17,15 +17,6 @@ export default function (values) {
   if (!values.zipcode) {
     error.zipcode = 'Required'
   }
-  if (!values.cardNumber) {
-    error.cardNumber = 'Required'
-  }
-  if (!values.expiration) {
-    error.expiration = 'Required'
-  }
-  if (!values.cvc) {
-    error.cvc = 'Required'
-  }
   console.log('Errors======>', error)
   return error
 }
