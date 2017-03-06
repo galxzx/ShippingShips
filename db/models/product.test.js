@@ -7,7 +7,7 @@ const Category = require('./category')
 const {expect} = require('chai')
 
 describe('Product', () => {
-  server.timeout(10000)
+
   before('wait for the db', () => db.didSync)
 
   let product;
