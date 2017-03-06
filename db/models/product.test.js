@@ -7,15 +7,16 @@ const Category = require('./category')
 const {expect} = require('chai')
 
 describe('Product', () => {
+  this.timeout(10000)
   before('wait for the db', () => db.didSync)
 
   let product;
   beforeEach(()=>
     product = Product.build(
       { title : 'A Product Title',
-        description: 'This is a description', 
-        price: 1000, 
-        inventory: 5, 
+        description: 'This is a description',
+        price: 1000,
+        inventory: 5,
         categories: [ 'powerboat', 'pleasureboat']
     })
   )
