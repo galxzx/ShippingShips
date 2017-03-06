@@ -1,5 +1,5 @@
 import axios from 'axios';
-import localForage from 'localForage';
+import localForage from 'localforage';
 
 
 /* -----------------    ACTIONS     ------------------ */
@@ -115,6 +115,7 @@ export const loadCartFromLocal = () => dispatch => {
 }
 
 export const checkoutCart = (address, token) => (dispatch, getState) => {
+
 	const state = getState()
 	const items = state.cart.cart.map(item => {
 		return {product_id: item.info.id, quantity: item.quantity}
@@ -129,6 +130,7 @@ export const checkoutCart = (address, token) => (dispatch, getState) => {
 	.then(res => res.data)
 	.then(order => console.log(order))
 	.catch(console.error.bind(console))
+
 }
 
 
