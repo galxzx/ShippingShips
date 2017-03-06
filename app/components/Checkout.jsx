@@ -86,7 +86,4 @@ class Checkout extends Component {
   }
 }
 
-export default reduxForm({
-  form: 'checkout',
-  validate
-})(Checkout)
+export default Checkout;
