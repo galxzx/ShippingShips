@@ -13,11 +13,6 @@ const OrderItem = db.define('order', {
     allowNull: false
   },
 
-  total: {
-    type: sequelize.FLOAT,
-    allowNull: false
-  }
-
 }, {
   hooks: {
     beforeCreate: (orderItem) => {

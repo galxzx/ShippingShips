@@ -11,12 +11,13 @@ const Order = db.define('order', {
   address: {
     type: Sequelize.STRING,
     allowNull: false
+  },
+  total: {
+    type: Sequelize.FLOAT,
+    allowNull: false
   }
 
-}, {
-  hooks:{
 
-  }
 })
 
 module.exports = Order;

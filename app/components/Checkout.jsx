@@ -53,11 +53,12 @@ class Checkout extends Component {
   onSubmit (address){
     console.log('address=======>', address)
     stripe.createToken(card)
-    .then(console.log)
+    .then(token => dispatch(this.props.checkoutCart))
     .catch(console.error)
   }
 
   render(){
+
     const handleSubmit = this.props.handleSubmit;
     const submitting = this.props.submitting;
     return (
