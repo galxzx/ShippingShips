@@ -23,7 +23,10 @@ User.hasOne(OAuth)
 Order.belongsTo(User)
 Order.hasMany(OrderItem)
 OrderItem.belongsTo(Product)
+User.hasMany(Order)
 // Product.belongsToMany(Category, {through: 'product_category'})
 // Category.belongsToMany(Product, {through: 'product_category'})
 
 module.exports = {User, Review, Product, Order, OrderItem}
+
+// {user_id, address: stringifiedobject, items [{product_Id, qty}, {}, {}]}

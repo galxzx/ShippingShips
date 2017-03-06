@@ -3,7 +3,7 @@
 const Sequelize = require('sequelize')
 const db = require('APP/db')
 
-const OrderItem = db.define('order', {
+const OrderItem = db.define('orderItem', {
   price: {
     type: Sequelize.FLOAT,
     allowNull: false
@@ -16,10 +16,12 @@ const OrderItem = db.define('order', {
 }, {
   hooks: {
     beforeCreate: (orderItem) => {
-      orderItem.price = orderItem.product.price;
+      orderItem.price = orderItem.getProduct().price;
       orderItem.quantity = orderItem.product.quantity;
     }
   }
 })
 
 module.exports = OrderItem;
+
+
