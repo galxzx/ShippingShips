@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router'
 
 export default function Cart (props){
 
@@ -35,6 +36,7 @@ export default function Cart (props){
 					}
 				</div>
 				<h3> Total: ${total}</h3>
+				<Link to="/checkout"><button className="btn btn-primary checkout">Checkout</button></Link>
 
 	        </div>
 	        );

@@ -15,7 +15,7 @@ const SET_FROM_LOCAL = 'SET_FROM_LOCAL';
 export const addItem = item => ({ type: ADD_ITEM_TO_CART, item});
 export const removeItem = item => ({type: REMOVE_ITEM_FROM_CART, item});
 export const calculateTotal = () => ( { type: CALCULATE_TOTAL});
-export const storeLocal = (cart) => ( { type: STORE_CART_LOCAL, cart});
+export const storeLocal = () => ( { type: STORE_CART_LOCAL});
 export const setFromLocal = (cart) => ({ type: SET_FROM_LOCAL, cart});
 
 /* ------------       REDUCER     ------------------ */
@@ -111,12 +111,28 @@ export const loadCartFromLocal = () => dispatch => {
 		console.log("loaded this cart from local: ", cart)
 		dispatch(setFromLocal(cart))
 		dispatch(calculateTotal())
+		dispatch(storeLocal())
 	})
+	.catch(console.error)
 }
 
 export const checkoutCart = (address, token) => (dispatch, getState) => {
-	const state = getState();
-	const items = state.cart.map(item => ({product_id:info.id}))
+
+	const state = getState()
+	const OrderItem = state.cart.cart.map(item => {
+		return {product_id: item.info.id, quantity: item.quantity}
+	})
+	const user_id = state.auth.id || null;
+	console.log("stringify address", address)
+	const body = {
+		order: {user_id, OrderItem, address:"temp address", total:state.cart.total},
+		token: token
+	}
+	axios.post('/api/orders', body)
+	.then(res => res.data)
+	.then(order => console.log(order))
+	.catch(console.error.bind(console))
+
 }
 
 
