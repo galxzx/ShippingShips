@@ -21,7 +21,9 @@ body {
 a {
 	color : #022b3a;
 }
-
+label, input {
+	display: block;
+}
 .btn-primary {
 	background: #022b3a;
 }

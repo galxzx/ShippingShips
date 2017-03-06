@@ -14,6 +14,7 @@ import CartContainer from './containers/CartContainer'
 import ProductContainer from './containers/ProductContainer'
 import ProductsContainer from './containers/ProductsContainer'
 import CategoryContainer from './containers/CategoryContainer'
+import CheckoutForm from './components/Checkout'
 
 import {setProducts} from './reducers/product'
 import {setCategories} from './reducers/categories'
@@ -44,6 +45,7 @@ export default function Root () {
           <Route path="/product" component={ProductContainer} />
           <Route path="/cart" component={CartContainer} />
           <Route path="/signup" component={SignUp} />
+          <Route path="/checkout" component={CheckoutForm} />
           <IndexRedirect to="/products"/>
         </Route>
       </Router>
