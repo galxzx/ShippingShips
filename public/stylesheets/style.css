@@ -83,3 +83,7 @@ a {
 .date {
 	color: red;
 }
+
+.floatRt {
+	float:right;
+}

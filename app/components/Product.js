@@ -6,54 +6,49 @@ import { Link } from 'react-router';
 export default class Product extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {[props.selectedProduct.id]:false}
+    console.log('propolies',props)
+    this.state = {[props.selectedProduct.id]:false} //this state is for conditional rendering of button and NewReviewContainer
   }
 
   render() {
     let props = this.props
     let user = props.user
-    console.log('props',props)
     let product = props.selectedProduct
-    let newReview = props.allReviews[product.id] || null
-    let newId = newReview ? newReview[0].id : null
-    let initialReviews = product.reviews.filter(rev=>{
-      if(newReview){ return rev.id!=newReview[0].id}
-      else {return true}
-    })
-    let reviews = newReview ? initialReviews.concat(newReview) : initialReviews
-  return (
-    <div>
-      <h3>{product.title}</h3>
-      <p>{product.description}</p>
-      <p>Price: ${product.price}</p>
-      <p>No. Available: {product.inventory}</p>
-      <div className='row'>
-        <img src={product.photoURL}/>
-      </div>
-      <div>
-          <ReviewsContainer reviews={reviews} {...props} />
-      </div>
-        
-        {
-          !this.state[props.selectedProduct.id]&&!newReview&&user&&(
-            <button 
-              className='btn btn-primary' 
-              onClick={ e=>this.setState({[props.selectedProduct.id]:true}) }>Add a Review
-            </button>
-          )
-        }
-        
-        {
-          this.state[props.selectedProduct.id]&&!newReview&&user&&(
-          <div>
-            <NewReviewContainer reviews={reviews} {...props}/>
-          </div>)
-        }
-      
-      </div>
-  )
-}
+    let updatedReviews = props.allReviews
+    let reviews = updatedReviews ? updatedReviews.filter(review=>review.product_id===product.id) : product.reviews
 
- 
-};
+    console.log('rrrreeeeevvvews',reviews)
+
+    let show = !(reviews.some(review=>review.user_id===user.id))
+    
+    return (
+      <div>
+        <h3>{product.title}</h3>
+        <p>{product.description}</p>
+        <p>Price: ${product.price}</p>
+        <p>No. Available: {product.inventory}</p>
+        <div className='row'>
+          <img src={product.photoURL}/>
+        </div>
+        <div>
+            <ReviewsContainer reviews={reviews} {...props} />
+        </div>
+          {
+            !this.state[product.id]&&user&&show&&(
+              <button 
+                className='btn btn-primary' 
+                onClick={ e=>this.setState({[product.id]:true}) }>Add a Review
+              </button>
+            )
+          }
+          {
+            this.state[product.id]&&user&&show&&(
+            <div>
+              <NewReviewContainer reviews={reviews} {...props}/>
+            </div>)
+          }
+        </div>
+    ) 
+  }
+}
 

@@ -1,33 +1,24 @@
 import axios from 'axios';
 import {hashHistory} from 'react-router';
+import store from '../store'
 /* -----------------    ACTIONS     ------------------ */
 
-
-const SET_NEWEST_REVIEW = 'SET_NEWEST_REVIEW';
-
-
-
+const UPDATE_RECENT = 'UPDATE_REVIEWS';
 /* ------------   ACTION CREATORS     ------------------ */
 
-
-export const setNewestReview = reviews => ({ type: SET_NEWEST_REVIEW, reviews})
-
-
-
+export const updateRecent = (review) => ({ type: UPDATE_RECENT, review})
 
 /* ------------       REDUCER     ------------------ */
-
-
 const initState = {
-	allReviews: []
+	mostRecent: {}
 }
 
 export const reducer = (state = initState, action) => {
 	const newState = Object.assign({}, state)
 	switch (action.type){
 
-		case SET_NEWEST_REVIEW:
-			newState.allReviews = action.reviews
+		case UPDATE_RECENT:
+			newState.mostRecent = action.review
 			break;
 
 		default:
@@ -36,26 +27,27 @@ export const reducer = (state = initState, action) => {
 	return newState;
 }
 
-
 /* ------------       DISPATCHERS     ------------------ */
-
-//Dispatching functions will hit appropriate backend routes to fetch appropriate data
 
 export const addReview = (review) => {
 	return (dispatch, getState) => {	
 		return axios.post('/api/reviews', review)
 		.then(res => res.data)
 		.then(review=>{
-			let obj = {}
-			let state = getState()
-			console.log('state',state)
-			const selectedProductId = state.product.selectedProduct.id
-			review.user= state.auth
-			obj[selectedProductId]=[review]
-			dispatch(setNewestReview(obj))
+			dispatch(updateRecent(review))
 		})
-		
-	  };
+		.catch( err => console.error(err))
+	};
+};
+
+export const deleteReview = (reviewId) => {
+	return (dispatch, getState) => {	
+		return axios.delete('/api/reviews/'+reviewId)
+		.then(revId=>{
+			dispatch(updateRecent({deleted:revId}))
+		})
+		.catch( err => console.error(err))
+	};
 };
 
 export const loadProductById = (id) => dispatch => {
@@ -65,10 +57,5 @@ export const loadProductById = (id) => dispatch => {
 	})
 	.catch( err => console.error(err))
 }
-
-
-
-
-
 
 export default reducer;

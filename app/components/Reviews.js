@@ -1,11 +1,8 @@
 import React from 'react';
 import moment from 'moment'
 
-export default function Review (props) {
 
-  const product = props.selectedProduct;
-  let reviews = props.reviews
-  let review = props.review;
+export default function Review ({product,reviews,review,deleteReview,setProducts}) {
   let reviewStarsArray = []
   for(review of reviews) {
   	let starsArray = []
@@ -14,12 +11,18 @@ export default function Review (props) {
      }
      reviewStarsArray.push(starsArray)	
   }
-
+  
   return (
   	<div>
   	  {
-      !props.showReviewForm&&reviews&&reviews.map((review,idx)=>(
+      reviews&&reviews.map((review,idx)=>(
         <div className='well margin10'>
+        <button 
+          className='btn btn-xs btn-danger floatRt'
+          onClick={e=>{deleteReview(e,review.id);setProducts(e)}}
+        >
+          Delete Review
+        </button>
           <div >
 			     <div className='row' >
 			       "{review.content}"

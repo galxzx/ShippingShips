@@ -1,28 +1,23 @@
 import React from 'react';
 import {Link }from 'react-router';
 
-export default function NewReview(props) {
-  const handleChange = props.handleChange;
-  const handleSubmit = props.handleSubmit;
-  const reviewContent = props.reviewContent
-  const reviewStars = props.reviewStars
-  const  user = props.user
-    let starsArray = []
-    for(var i = 0; i<reviewStars; i++) {
-      starsArray.push(<span key={i} className='glyphicon glyphicon-star'> </span>)
-    }
+export default function NewReview({handleChange,handleSubmit,reviewContent, reviewStars, user}) {
+  let starsArray = []
+  for(var i = 0; i<reviewStars; i++) {
+    starsArray.push(<span key={i} className='glyphicon glyphicon-star'> </span>)
+  }
 
   return (
     <div>
     {
-      props.reviewContent&&(
+      reviewContent&&(
       <div className='well margin10'>
         <div >
           <div className='row' >
-            content: {reviewContent}
+            {`"${reviewContent}"`}
           </div>
           <div className='row' >
-            stars: {starsArray.map(star=>(star))}
+            {starsArray.map(star=>(star))}
           </div>
         </div>
       </div>

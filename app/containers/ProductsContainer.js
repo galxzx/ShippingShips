@@ -1,20 +1,14 @@
-
 import Products from '../components/Products';
 import { connect } from 'react-redux';
-
 import {addItemToCart} from 'APP/app/reducers/cart'
 import { setOneProduct } from '../reducers/product';
 import {loadProductsInCat} from '../reducers/categories'
 
-
 const mapStateToProps = (state) => {
-  console.log(state,'state')
   return {
     allProducts: state.product.allProducts,
   	selectedProduct: state.product.selectedProduct,
-    categoryProducts: state.category.selCatProducts,
-    showForm: state.review.showReviewForm,
-    newestReview: state.review.newestReview
+    categoryProducts: state.category.selCatProducts
   };
 };
 
@@ -31,7 +25,6 @@ const mapDispatchToProps = (dispatch) => {
     },
   }
 }
-
 
 const ProductsContainer = connect(mapStateToProps, mapDispatchToProps)(Products);
 

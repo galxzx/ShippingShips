@@ -1,18 +1,30 @@
 
 import Reviews from '../components/Reviews';
 import { connect } from 'react-redux';
+import {deleteReview} from 'APP/app/reducers/review'
+import {loadProducts} from 'APP/app/reducers/product'
 
 const mapStateToProps = (state) => {
   return {
-    selectedProduct: state.product.selectedProduct,
-    showReviewForm: state.product.showReviewForm,
-    newestReview: state.review.newestReview,
-    allReviews: state.review.allReviews,
+    product: state.product.selectedProduct,
+    newReview: state.review.newReview,
     user: state.auth
-
   };
 };
 
-const ReviewsContainer = connect(mapStateToProps)(Reviews);
+const mapDispatch = dispatch => {
+	return {
+		deleteReview (e,reviewId) {
+			e.preventDefault()
+			dispatch(deleteReview(reviewId));
+		},
+		setProducts(e) {
+			e.preventDefault()
+			dispatch(loadProducts())
+		}
+	}
+}
+
+const ReviewsContainer = connect(mapStateToProps,mapDispatch)(Reviews);
 
 export default ReviewsContainer;

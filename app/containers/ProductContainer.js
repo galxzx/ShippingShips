@@ -2,14 +2,13 @@
 import Product from '../components/Product';
 import { connect } from 'react-redux';
 import {addItemToCart} from 'APP/app/reducers/cart'
-import {showReviewForm} from 'APP/app/reducers/product'
 
 const mapStateToProps = (state) => {
   return {
     selectedProduct: state.product.selectedProduct,
-    showReviewForm: state.review.showReviewForm,
-    allReviews: state.review.allReviews,
-    user: state.auth
+    updatedReviews: state.review.updatedReviews,
+    user: state.auth,
+    allReviews: state.product.allProducts.map(prod=>prod.reviews).reduce((a,b)=>a.concat(b),[])
   };
 };
 
@@ -17,9 +16,6 @@ const mapDispatch = dispatch => {
 	return {
 		addItemToCart (product) {
 			dispatch(addItemToCart(product));
-		},
-		showRevFormFunc (bool) {
-			dispatch(showReviewForm(bool))
 		}
 	}
 }
