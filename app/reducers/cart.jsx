@@ -114,5 +114,9 @@ export const loadCartFromLocal = () => dispatch => {
 	})
 }
 
+export const checkoutCart = () => dispatch => {
+
+}
+
 
 export default reducer;

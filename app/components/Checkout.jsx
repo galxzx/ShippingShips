@@ -51,7 +51,7 @@ class Checkout extends Component {
   }
 
   onSubmit (address){
-    console.log('event=======>', address)
+    console.log('address=======>', address)
     stripe.createToken(card)
     .then(console.log)
     .catch(console.error)
