@@ -83,7 +83,7 @@ if (module === require.main) {
     }
   )
 
-  server.timeout(10000)
+  if(pkg.isTesting) server.timeout(10000)
 }
 
 
