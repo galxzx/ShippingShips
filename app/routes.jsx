@@ -17,12 +17,13 @@ import CategoryContainer from './containers/CategoryContainer'
 
 import {setProducts} from './reducers/product'
 import {setCategories} from './reducers/categories'
-
+import {loadCartFromLocal} from './reducers/cart';
 
 const onAppEnter = () => {
   const pProducts = axios.get('api/products');
   return pProducts.then(res => res.data)
     .then(products => store.dispatch(setProducts(products)))
+    .then( () => store.dispatch(loadCartFromLocal()))
     .catch(console.error)
 }
 
