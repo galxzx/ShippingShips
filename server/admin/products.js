@@ -13,7 +13,6 @@ router.param('productId', (req, res, next, id) => {
 
 //Product creation route
 router.post('/', (req, res, next) => {
-
 	Product.create(req.body)
 	.then(product => res.json(product))
 	.catch(err => console.error(err));
@@ -32,5 +31,7 @@ router.delete('/:productId', (req, res, next) => {
 	req.product.destroy()
 	.then( res.sendStatus(204));
 })
+
+
 
 module.exports = router;

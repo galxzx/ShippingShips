@@ -1,14 +1,10 @@
 import React from 'react';
 
 export default function Cart (props){
-	console.log("Cart props!: ", props);
+
 	const cart = props.cart;
 	const total = props.total || 0;
 	const removeItem = props.removeItemFromCart;
-	console.log(removeItem)
-
-
-
 
 	return (
 			<div>

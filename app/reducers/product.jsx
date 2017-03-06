@@ -1,21 +1,11 @@
 import axios from 'axios';
 /* -----------------    ACTIONS     ------------------ */
-
-
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
 const SELECT_PRODUCT = 'SELECT_PRODUCT';
-
-
 /* ------------   ACTION CREATORS     ------------------ */
-
-
 export const setProducts = products => ({ type: GET_ALL_PRODUCTS, products })
 export const setOneProduct = (product) => ({type: SELECT_PRODUCT, product})
-
-
-
 /* ------------       REDUCER     ------------------ */
-
 
 const initState = {
 	allProducts: [],
@@ -39,12 +29,7 @@ export const reducer = (state = initState, action) => {
 	}
 	return newState;
 }
-
-
 /* ------------       DISPATCHERS     ------------------ */
-
-//Dispatching functions will hit appropriate backend routes to fetch appropriate data
-
 export const loadProducts = () => dispatch => {
 	axios.get('/api/products')
 	.then( res => {
@@ -60,6 +45,5 @@ export const loadProductById = (id) => dispatch => {
 	})
 	.catch( err => console.error(err))
 }
-
 
 export default reducer;

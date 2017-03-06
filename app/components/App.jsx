@@ -5,6 +5,7 @@ import HeaderContainer from '../containers/HeaderContainer'
 
 
 export default function App ({ children }) {
+
   return (
     <div id="main" className="container-fluid wrap">
       <div className="row">

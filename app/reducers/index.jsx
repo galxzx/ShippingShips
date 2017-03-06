@@ -9,7 +9,9 @@ const rootReducer = combineReducers({
   category: require('./categories').default,
   cart: require('./cart').default,
   signup: require('./signup').default,
-  form: form
+  form: form,
+  review: require('./review').default,
+  signup: require('./signup').default
 })
 
 export default rootReducer

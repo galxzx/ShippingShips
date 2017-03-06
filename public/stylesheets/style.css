@@ -54,6 +54,10 @@ label, input {
 	margin: 3px;
 }
 
+.margin10 {
+	margin: 10px;
+}
+
 .cart-btn{
 	border-radius: 3px;
 	float: right;
@@ -76,6 +80,7 @@ label, input {
 
 
 
+
 .field {
   background: white;
   box-sizing: border-box;
@@ -90,3 +95,14 @@ label, input {
   padding: 0 20px;
   cursor: text;
 }
+.glyphicon-star {
+	color:blue;
+}
+
+.date {
+	color: red;
+}
+
+.floatRt {
+	float:right;
+
