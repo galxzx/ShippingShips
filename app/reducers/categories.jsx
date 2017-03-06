@@ -2,19 +2,20 @@ import axios from 'axios';
 /* -----------------    ACTIONS     ------------------ */
 
 
-const SET_CATEGORIES = 'SET_CATEGORIES';
+const SET_CATEGORY = 'SET_CATEGORY';
 const SET_CAT_PRODUCTS = 'SET_CAT_PRODUCTS';
 
 /* ------------   ACTION CREATORS     ------------------ */
 
-export const setCategories = categories => ({ type: SET_CATEGORIES, categories })
+export const setCategory = category => ({ type: SET_CATEGORY, category })
 export const selCatProducts = (products) => ({type: SET_CAT_PRODUCTS, products})
 
 /* ------------       REDUCER     ------------------ */
 
 
 const initState = {
-  categories: ['powerboat', 'sailboat', 'commercial', 'pleasurecraft', 'military'],
+  selectedCategory: 'All Boats',
+  categories: ['All Boats', 'powerboat', 'sailboat', 'commercial', 'pleasurecraft', 'military'],
   selCatProducts: []
 }
 
@@ -22,8 +23,8 @@ export const reducer = (state = initState, action) => {
   const newState = Object.assign({}, state)
   switch (action.type){
 
-    case SET_CATEGORIES:
-      newState.categories = action.categories;
+    case SET_CATEGORY:
+      newState.selectedCategory = action.category;
       break;
     case SET_CAT_PRODUCTS:
       newState.selCatProducts = action.products;

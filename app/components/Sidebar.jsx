@@ -4,11 +4,13 @@ import Login from './Login';
 import Logout from './Logout';
 import WhoAmI from './WhoAmI';
 
-const Sidebar = (props) => {
+const Sidebar = ({category, auth, onClick, cart}) => {
 
-  const categories = props.category.categories;
-  const auth = props.auth;
+  const categories = category.categories;
+  const selectedCategory = category.selectedCategory
   var isLogin;
+  const items = cart.cart;
+
 
   if(!auth) isLogin = <Login />
  //else isLogin = <Logout />
@@ -17,22 +19,35 @@ const Sidebar = (props) => {
     <div>
 
         {isLogin}
-        <h3>Categories</h3>
-      {categories.map((category) => {
-        return (
-        <div key={category}>
+        <div >
         <section>
-          <h4 className="menu-item active">
-            <Link to='/products' onClick={()=>{props.onClick(category)}}>{category}</Link>
+        <h3>Categories</h3>
+      {categories.map((curCategory) => {
+        return (
+
+          <h4 key={curCategory}className="menu-item active">
+            <Link to='/products' className={"category" + (curCategory === selectedCategory ? " selCat" : "" )} onClick={()=>{
+              onClick(curCategory)}}>{curCategory}</ Link>
           </h4>
-        </section>
-        </div>
+
         )
       })}
-      <section>
-        <Link to={'/cart'}> <button> Show Cart </button> </Link>
       </section>
     </div>
+      <section>
+        <Link to={'/cart'}> <button className="btn-block btn btn-primary"> Show Cart </button> </Link>
+      </section>
+      <section>
+        <h4>Your Items</h4>
+        {items.map(item => {
+          return (
+            <p key={item.info.id}>{item.info.title.slice(0,10)}  <strong>QTY</strong>:{item.quantity}</p>
+          )
+        })}
+        <h5>Total: ${cart.total}</h5>
+      </section>
+    </div>
+
   );
 }
 

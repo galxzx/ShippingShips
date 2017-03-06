@@ -1,5 +1,33 @@
 body {
 	padding-top: 60px;
+	background: #e5e5e5;
+}
+
+.well {
+	background: #a4b6c1;
+}
+
+.navbar-default {
+	background: #022b3a;
+	width: 100%;
+	color: #a4b6c1;
+}
+
+.wrap {
+	 height: 100%;
+	 overflow: hidden;
+}
+
+a {
+	color : #022b3a;
+}
+
+.btn-primary {
+	background: #022b3a;
+}
+
+.login{
+	margin-top: 10px;
 }
 
 .thumbs {
@@ -30,6 +58,11 @@ body {
 	margin-bottom: 3px;
 }
 
+.selCat {
+	color: #a4b6c1;
+	font-weight: bold;
+	padding-left: 15px;
+}
 
 
 .cart-item{
