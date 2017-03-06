@@ -21,14 +21,6 @@ import {loadCartFromLocal} from './reducers/cart';
 
 const onAppEnter = () => {
   const pProducts = axios.get('api/products');
-  //const pCategories = axios.get('api/categories');
-
-  // return Promise.all([pProducts, pCategories])
-  //   .then(responses => responses.map(r => r.data))
-  //   .then(([products, categories]) => {
-  //     store.dispatch(setProducts(products));
-  //     store.dispatch(setCategories(categories));
-  //   })
   return pProducts.then(res => res.data)
     .then(products => store.dispatch(setProducts(products)))
     .then( () => store.dispatch(loadCartFromLocal()))
@@ -42,7 +34,8 @@ export default function Root () {
       <Router history={browserHistory}>
         <Route path="/" component={App} onEnter={onAppEnter}>
           <Route path="/products" component={ProductsContainer} />
-          <Route path="/product" component={ProductContainer} />
+          <Route path="/product" component={ProductContainer} onEnter={onAppEnter} />
+          <Route path="/productReview" component={ProductContainer} onEnter={onAppEnter} />
           <Route path="/cart" component={CartContainer} />
           <Route path="/signup" component={SignUp} />
           <IndexRedirect to="/products"/>
