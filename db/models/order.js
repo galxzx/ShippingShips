@@ -4,23 +4,18 @@ const Sequelize = require('sequelize')
 const db = require('APP/db')
 
 const Order = db.define('order', {
-  guest: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: true
+  status: {
+    type: Sequelize.ENUM('created', 'processing', 'cancelled', 'completed'),
+    defaultValue: 'created'
+  },
+  address: {
+    type: Sequelize.STRING,
+    allowNull: false
   }
 
 }, {
   hooks:{
-    beforeCreate: (order) => {
-      if(order.userId) {
-        order.guest = false;
-      }
-    },
-    beforeUpdate: (order) => {
-      if(order.userId) {
-        order.guest = false;
-      }
-    }
+
   }
 })
 

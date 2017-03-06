@@ -11,6 +11,11 @@ const OrderItem = db.define('order', {
   quantity: {
     type: Sequelize.INTEGER,
     allowNull: false
+  },
+
+  total: {
+    type: sequelize.FLOAT,
+    allowNull: false
   }
 
 }, {
