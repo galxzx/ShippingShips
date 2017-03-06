@@ -15,7 +15,7 @@ const SET_FROM_LOCAL = 'SET_FROM_LOCAL';
 export const addItem = item => ({ type: ADD_ITEM_TO_CART, item});
 export const removeItem = item => ({type: REMOVE_ITEM_FROM_CART, item});
 export const calculateTotal = () => ( { type: CALCULATE_TOTAL});
-export const storeLocal = (cart) => ( { type: STORE_CART_LOCAL, cart});
+export const storeLocal = () => ( { type: STORE_CART_LOCAL});
 export const setFromLocal = (cart) => ({ type: SET_FROM_LOCAL, cart});
 
 /* ------------       REDUCER     ------------------ */
@@ -38,7 +38,9 @@ const reducer = (state = initState, action) => {
 		case ADD_ITEM_TO_CART:
 			let isDuplicate = false;
 			newState.cart.forEach( entry => {
-				if(entry.info == action.item){
+
+				console.log(entry.info.id, action.item.id)
+				if(entry.info.id == action.item.id){
 					entry.quantity++;
 					isDuplicate = true;
 				}
@@ -54,7 +56,7 @@ const reducer = (state = initState, action) => {
 		case REMOVE_ITEM_FROM_CART:
 			let itemIndex = -1;
 			newState.cart.forEach( (entry, idx) => {
-				if(entry.info == action.item)
+				if(entry.info.id == action.item.id)
 					itemIndex = idx;
 			})
 			if(itemIndex >= 0){
@@ -82,6 +84,7 @@ const reducer = (state = initState, action) => {
 			break;
 
 		case SET_FROM_LOCAL:
+
 			newState.cart = action.cart
 			break;
 
@@ -111,6 +114,7 @@ export const loadCartFromLocal = () => dispatch => {
 		console.log("loaded this cart from local: ", cart)
 		dispatch(setFromLocal(cart))
 		dispatch(calculateTotal())
+		dispatch(storeLocal())
 	})
 }
 
