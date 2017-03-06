@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 export default class Product extends React.Component {
   constructor (props) {
     super(props)
-    console.log('propolies',props)
+
     this.state = {[props.selectedProduct.id]:false} //this state is for conditional rendering of button and NewReviewContainer
   }
 
@@ -17,12 +17,13 @@ export default class Product extends React.Component {
     let updatedReviews = props.allReviews
     let reviews = updatedReviews ? updatedReviews.filter(review=>review.product_id===product.id) : product.reviews
 
-    console.log('rrrreeeeevvvews',reviews)
+
 
     let show = !(reviews.some(review=>review.user_id===user.id))
-    
+
     return (
       <div>
+        <button className = 'cart-btn center btn-primary' onClick={()=>props.addItemToCart(product)} >Add To Cart</button>
         <h3>{product.title}</h3>
         <p>{product.description}</p>
         <p>Price: ${product.price}</p>
@@ -35,8 +36,8 @@ export default class Product extends React.Component {
         </div>
           {
             !this.state[product.id]&&user&&show&&(
-              <button 
-                className='btn btn-primary' 
+              <button
+                className='btn btn-primary'
                 onClick={ e=>this.setState({[product.id]:true}) }>Add a Review
               </button>
             )
@@ -48,7 +49,7 @@ export default class Product extends React.Component {
             </div>)
           }
         </div>
-    ) 
+    )
   }
 }
 
