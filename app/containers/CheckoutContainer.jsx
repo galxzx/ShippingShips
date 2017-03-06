@@ -15,7 +15,8 @@ const mapStateToProps = (state) => {
 
 const mapDisptachToProps = (dispatch) => {
   return {
-    checkoutCart
+    checkoutCart (address, token) {dispatch(checkoutCart(address, token))}
+    // : (address, token) => dispatch(checkoutCart(address, token))
   }
 }
 

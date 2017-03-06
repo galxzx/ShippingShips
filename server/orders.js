@@ -26,7 +26,8 @@ module.exports = require('express').Router()
   .get('/:orderId', (req, res) =>
     res.json(req.order))
   .post('/', (req, res, next) => {
-    Order.create(req.body.order)
+    console.log(req.body)
+    Order.create(req.body.order, {include: [{model:OrderItem}]})
     .then(order => res.json(order))
     .catch(next);
   })

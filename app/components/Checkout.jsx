@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
-import validate from './checkoutValidate'
+import validate from './checkoutValidate';
+
 
 //SetUp to use stripe
 const stripe = Stripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
@@ -36,9 +37,14 @@ const renderField = ({ input, label, type, meta: {touched, error} }) => {
 )}
 
 class Checkout extends Component {
+  constructor() {
+    super()
+    this.onSubmit = this.onSubmit.bind(this)
+  }
 
   componentDidMount(){
 
+    // if(!document.getElementsByClassName('_PrivateStripeElement'))
     card.mount('#card-element')
     card.addEventListener('change', function(event) {
       const displayError = document.getElementById('card-errors');
@@ -50,10 +56,17 @@ class Checkout extends Component {
     })
   }
 
+  componentWillUnmount(){
+    card.unmount()
+  }
+
   onSubmit (address){
     console.log('address=======>', address)
     stripe.createToken(card)
-    .then(token => dispatch(this.props.checkoutCart))
+    .then(token => {
+      console.log(token)
+      this.props.checkoutCart(address, token)
+    })
     .catch(console.error)
   }
 
