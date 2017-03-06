@@ -32,10 +32,12 @@ export default function NewReview({handleChange,handleSubmit,reviewContent, revi
                 <label className="col-xs-2 control-label">Content</label>
                 <div className="col-xs-10">
                   <input
+                  minLength = {5}
+                  maxLength = {500}
                   value={reviewContent}
                   onChange={handleChange}
                   className="form-control"
-                  type="text"
+                  type='text'
                   name='reviewContent'
                   />
                 </div>
