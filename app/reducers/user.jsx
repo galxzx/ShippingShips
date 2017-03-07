@@ -29,9 +29,9 @@ export const reducer = (state = initState, action) => {
 
 /* ------------       DISPATCHERS     ------------------ */
 
-export const loadUserOrders = (review) => {
+export const loadUserOrders = (id) => {
 	return (dispatch, getState) => {	
-		return axios.get('/api/orders')
+		return axios.get('/api/orders/users/'+id)
 		.then(res => res.data)
 		.then(orders=>{
 			dispatch(setUserOrders(orders))

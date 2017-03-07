@@ -27,7 +27,6 @@ module.exports = require('express').Router()
   .get('/:orderId', (req, res) =>
     res.json(req.order))
   .post('/', (req, res, next) => {
-
     Order.create(req.body.order, {include: [{model:OrderItem}]})
     .then(order => {
         stripe.charges.create({
@@ -46,6 +45,11 @@ module.exports = require('express').Router()
           }
 
       })
+    }).catch(next)
     })
-    .catch(next);
-  })
+    
+  .get('/users/:userId', (req, res) => {
+    Order.findAll({where:{user_id:req.params.userId}})
+    .then(orders=>
+      res.send(orders)
+    )})

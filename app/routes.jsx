@@ -19,7 +19,7 @@ import CheckoutContainer from './containers/CheckoutContainer'
 import {setProducts} from './reducers/product'
 import {setCategories} from './reducers/categories'
 import {loadCartFromLocal} from './reducers/cart'
-import {loadUserOrders} from './reducers/user'
+// import {loadUserOrders} from './reducers/user'
 
 const onAppEnter = () => {
   const pProducts = axios.get('api/products');
@@ -29,9 +29,9 @@ const onAppEnter = () => {
     .catch(e=>console.e)
 }
 
-const onUserEnter = () => {
-  return store.dispatch(loadUserOrders())
-}
+// const onUserEnter = () => {
+//   return store.dispatch(loadUserOrders())
+// }
     
 export default function Root () {
   return (
@@ -43,7 +43,7 @@ export default function Root () {
           <Route path="/productReview" component={ProductContainer}  />
           <Route path="/cart" component={CartContainer} />
           <Route path="/signup" component={SignUp} />
-          <Route path="/users/:userId" component={UserContainer} onEnter={onUserEnter} />
+          <Route path="/users/:userId" component={UserContainer}  />
           <Route path="/checkout" component={CheckoutContainer} />
           <IndexRedirect to="/products"/>
         </Route>
