@@ -15,11 +15,14 @@ import ProductContainer from './containers/ProductContainer'
 import ProductsContainer from './containers/ProductsContainer'
 import UserContainer from './containers/UserContainer'
 import CheckoutContainer from './containers/CheckoutContainer'
+import AddProductContainer from './containers/AddProductContainer'
+import LandingContainer from './containers/LandingContainer'
 
 import {setProducts} from './reducers/product'
 import {setCategories} from './reducers/categories'
 import {loadCartFromLocal} from './reducers/cart'
 import {loadUserOrders} from './reducers/user'
+
 
 const onAppEnter = () => {
   const pProducts = axios.get('api/products');
@@ -29,10 +32,22 @@ const onAppEnter = () => {
     .catch(e=>console.e)
 }
 
+// const onAdminEnter = () => {
+//   onAppEnter().then(()=> {
+//     const user = store.getState().auth
+//     console.log(user)
+//     if(!user || !user.isAdmin){
+//       browserHistory.push('/products')
+//        // alert('Not Allowed')
+
+//     }
+//   })
+// }
+
 const onUserEnter = () => {
   return store.dispatch(loadUserOrders())
 }
-    
+
 export default function Root () {
   return (
     <Provider store={store}>
@@ -45,7 +60,12 @@ export default function Root () {
           <Route path="/signup" component={SignUp} />
           <Route path="/users/:userId" component={UserContainer} onEnter={onUserEnter} />
           <Route path="/checkout" component={CheckoutContainer} />
-          <IndexRedirect to="/products"/>
+          <Router path="/admin"  component={LandingContainer}>
+            <Route path="/admin/addProduct" component={AddProductContainer} />
+            <Route path="/admin/landing" c />
+            <IndexRedirect to="/admin/landing" />
+          </Router>
+          <IndexRedirect to="/products" />
         </Route>
       </Router>
     </Provider>

@@ -23,7 +23,7 @@ class AddProduct extends Component {
     const submitting = this.props.submitting;
     return (
       <div className="well">
-        <h2>Checkout</h2>
+        <h2>AddProduct</h2>
         <form onSubmit={handleSubmit(this.props.addProduct)}>
           <Field name="title" type="text" className="form-control field" component={renderField} id="title" label="Title" />
           <Field name="description" type="text" className="form-control field" component={renderField} id="description" label="Description" />
@@ -31,7 +31,7 @@ class AddProduct extends Component {
           <Field name="inventory" type="text" className="form-control field" component={renderField} id="inventory" label="Inventory" />
           <Field name="photoUrl" type="text" className="form-control field" component={renderField} id="photoUrl" label="photoUrl" />
           <Field name="categories" type="text" className="form-control field" component={renderField} id="categories" label="Categories" />
-          <button type="submit" disabled={submitting} className="btn btn-primary">Checkout</button>
+          <button type="submit" disabled={submitting} className="btn btn-primary">Add Product</button>
         </form>
 
 

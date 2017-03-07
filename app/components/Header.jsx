@@ -28,6 +28,9 @@ const Header = ({category, auth, onClick, cart}) => {
               )
             })}
             <li>
+              <Link to='/admin'>Admin</Link>
+            </li>
+            <li>
               <Link to='/cart' className="cart"><span className="glyphicon glyphicon-shopping-cart"></span>: {cart.items}</Link>
             </li>
           </ul>

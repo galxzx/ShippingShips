@@ -49,7 +49,7 @@ export const loadProductById = (id) => dispatch => {
 }
 
 export const addProduct = (product) => dispatch => {
-	axios.post('/api/products')
+	axios.post('/api/products', product)
 	.then(res => {
 		return dispatch(loadProducts())
 	})

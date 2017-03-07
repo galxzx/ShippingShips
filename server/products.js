@@ -42,3 +42,12 @@ module.exports = require('express').Router()
     .then(products => res.json(products))
     .catch(next);
   })
+
+  .post('/', (req, res, next) => {
+    console.log(req.body)
+    Product.create(req.body)
+    .then(product=>{
+      console.log(product)
+     res.send(product)})
+    .catch(next)
+  })

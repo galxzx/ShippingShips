@@ -5,7 +5,9 @@ import {addProduct} from '../reducers/product'
 import {connect} from 'react-redux'
 
 
-
+const mapstate = () => {
+  return {};
+}
 
 const mapDisptachToProps = (dispatch) => {
   return {
@@ -15,8 +17,8 @@ const mapDisptachToProps = (dispatch) => {
 }
 
 const ProductForm = reduxForm({
-  form: 'checkout',
+  form: 'product',
   validate
 })(AddProduct)
 
-export default connect({}, mapDisptachToProps)(ProductForm);
+export default connect(mapstate, mapDisptachToProps)(ProductForm);
