@@ -10,7 +10,6 @@ api
   .use('/users', require('./users'))
   .use('/products', require('./products'))
   .use('/orders', require('./orders'))
-  .use('/categories', require('./categories'))
   .use('/reviews', require('./reviews'))
 
 

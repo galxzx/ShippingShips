@@ -6,10 +6,11 @@ const OrderItem = require('../db/models/orderItem')
 
 
 module.exports = require('express').Router()
-  .get('/', (req, res, next) =>
+  .get('/', (req, res, next) => {
+    console.log('wwwttttfffff')
     Order.findAll({ include:  [OrderItem] })
-    .then(orders => res.json(orders))
-    .catch(next))
+    .then(orders => {console.log('ooordderrz',orders);res.json(orders)})
+    .catch(next)})
   .param('orderId', (req, res, next, theOrderId) =>
     Order.findOne({where: {id:theOrderId}, include: [OrderItem]})
     .then(order => {

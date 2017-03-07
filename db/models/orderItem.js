@@ -15,10 +15,10 @@ const OrderItem = db.define('orderItem', {
 
 }, {
   hooks: {
-    beforeCreate: (orderItem) => {
-      orderItem.price = orderItem.product.price;
-      orderItem.quantity = orderItem.product.quantity;
-    }
+    // beforeCreate: (orderItem) => {
+    //   orderItem.price = orderItem.getProduct().price;
+    //   orderItem.quantity = orderItem.getProduct().quantity;
+    // }
   }
 })
 
