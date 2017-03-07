@@ -2,12 +2,12 @@
 
 const db = require('APP/db')
 const Product = require('./product')
-const Category = require('./category')
+
 
 const {expect} = require('chai')
 
-describe('Product', () => {
-
+describe('Product', function() {
+  this.timeout(5000)
   before('wait for the db', () => db.didSync)
 
   let product;

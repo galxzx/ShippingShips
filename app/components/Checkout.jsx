@@ -4,7 +4,7 @@ import validate from './checkoutValidate';
 
 
 //SetUp to use stripe
-const stripe = Stripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
+const stripe = Stripe('pk_test_1ZibgNvWPCkc979rVgTBoDqL');
 const elements = stripe.elements();
 const style = {
       base: {
