@@ -47,11 +47,8 @@ export default function Root () {
           <Route path="/productReview" component={ProductContainer}  />
           <Route path="/cart" component={CartContainer} />
           <Route path="/signup" component={SignUp} />
-<<<<<<< HEAD
           <Route path="/users/:userId" component={UserContainer} onEnter={onUserEnter} />
-=======
           <Route path="/checkout" component={CheckoutContainer} />
->>>>>>> master
           <IndexRedirect to="/products"/>
         </Route>
       </Router>
