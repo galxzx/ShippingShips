@@ -130,7 +130,7 @@ export const checkoutCart = (address, token) => (dispatch, getState) => {
 	}
 	axios.post('/api/orders', body)
 	.then(res => res.data)
-	.then(order => console.log(order))
+	.then(charge => console.log(charge))
 	.catch(console.error.bind(console))
 
 }

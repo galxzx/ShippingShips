@@ -2,7 +2,7 @@
 
 const db = require('APP/db')
 const Product = require('./product')
-const Category = require('./category')
+
 
 const {expect} = require('chai')
 
