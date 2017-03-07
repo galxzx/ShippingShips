@@ -119,13 +119,13 @@ export const loadCartFromLocal = () => dispatch => {
 export const checkoutCart = (address, token) => (dispatch, getState) => {
 
 	const state = getState()
-	const OrderItem = state.cart.cart.map(item => {
-		return {product_id: item.info.id, quantity: item.quantity}
+	const orderItems = state.cart.cart.map(item => {
+		return {product_id: item.info.id, price: item.info.price, quantity: item.quantity}
 	})
 	const user_id = state.auth.id || null;
 	console.log("stringify address", address)
 	const body = {
-		order: {user_id, OrderItem, address:"temp address", total:state.cart.total},
+		order: {user_id, orderItems, address:"temp address", total:state.cart.total},
 		token: token
 	}
 	axios.post('/api/orders', body)
