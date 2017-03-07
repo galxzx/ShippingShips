@@ -1,5 +1,5 @@
 import axios from 'axios';
-import localForage from 'localForage';
+import localForage from 'localforage';
 
 
 /* -----------------    ACTIONS     ------------------ */
@@ -38,9 +38,7 @@ const reducer = (state = initState, action) => {
 		case ADD_ITEM_TO_CART:
 			let isDuplicate = false;
 			newState.cart.forEach( entry => {
-
-				console.log(entry.info.id, action.item.id)
-				if(entry.info.id == action.item.id){
+				if(entry.info == action.item){
 					entry.quantity++;
 					isDuplicate = true;
 				}
@@ -56,7 +54,7 @@ const reducer = (state = initState, action) => {
 		case REMOVE_ITEM_FROM_CART:
 			let itemIndex = -1;
 			newState.cart.forEach( (entry, idx) => {
-				if(entry.info.id == action.item.id)
+				if(entry.info == action.item)
 					itemIndex = idx;
 			})
 			if(itemIndex >= 0){
@@ -84,7 +82,6 @@ const reducer = (state = initState, action) => {
 			break;
 
 		case SET_FROM_LOCAL:
-
 			newState.cart = action.cart
 			break;
 
@@ -116,6 +113,26 @@ export const loadCartFromLocal = () => dispatch => {
 		dispatch(calculateTotal())
 		dispatch(storeLocal())
 	})
+	.catch(console.error)
+}
+
+export const checkoutCart = (address, token) => (dispatch, getState) => {
+
+	const state = getState()
+	const orderItems = state.cart.cart.map(item => {
+		return {product_id: item.info.id, price: item.info.price, quantity: item.quantity}
+	})
+	const user_id = state.auth.id || null;
+	console.log("stringify address", address)
+	const body = {
+		order: {user_id, orderItems, address:"temp address", total:state.cart.total},
+		token: token
+	}
+	axios.post('/api/orders', body)
+	.then(res => res.data)
+	.then(order => console.log(order))
+	.catch(console.error.bind(console))
+
 }
 
 

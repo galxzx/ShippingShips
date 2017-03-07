@@ -14,6 +14,8 @@ import CartContainer from './containers/CartContainer'
 import ProductContainer from './containers/ProductContainer'
 import ProductsContainer from './containers/ProductsContainer'
 import UserContainer from './containers/UserContainer'
+import CategoryContainer from './containers/CategoryContainer'
+import CheckoutContainer from './containers/CheckoutContainer'
 
 import {setProducts} from './reducers/product'
 import {setCategories} from './reducers/categories'
@@ -45,7 +47,11 @@ export default function Root () {
           <Route path="/productReview" component={ProductContainer}  />
           <Route path="/cart" component={CartContainer} />
           <Route path="/signup" component={SignUp} />
+<<<<<<< HEAD
           <Route path="/users/:userId" component={UserContainer} onEnter={onUserEnter} />
+=======
+          <Route path="/checkout" component={CheckoutContainer} />
+>>>>>>> master
           <IndexRedirect to="/products"/>
         </Route>
       </Router>
