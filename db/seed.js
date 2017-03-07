@@ -13,11 +13,13 @@ const seedUsers = () => db.Promise.map([
 ], user => db.model('users').create(user))
 
 const seedOrders = () => db.Promise.map([
-  {status: 'created', address: '123 Sesame St.',total:2000, user_id:2}
+  {status: 'created', address: '123 Sesame St.',total:2000, user_id:2},
+  {status: 'created', address: '123 Sesame St.',total:5000, user_id:2},
 ], order => Order.create(order))
 
 const seedOrderItems = () => db.Promise.map([
-  {price:100, quantity: 2, order_id: 1, product_id: 1}
+  {price:100, quantity: 2, order_id: 1, product_id: 1},
+  {price:50000, quantity: 1, order_id: 1, product_id: 2}
 ], orderItem => OrderItem.create(orderItem))
 
 const seedProducts = () => db.Promise.map([

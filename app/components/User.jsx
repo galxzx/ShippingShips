@@ -15,7 +15,7 @@ export default function User ({orders, user}) {
       {
       orders.map(order=>(
         <div key={order.id}>
-        <h3>Order#: {order.id}</h3>
+        <h3>Order ID#: {order.id}</h3>
         <p>Status: {order.status}</p>
         <p>Address: {order.address}</p>
         <p>Order Total: {order.id}</p>
