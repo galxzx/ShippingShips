@@ -108,10 +108,12 @@ export const removeItemFromCart = (item) => dispatch => {
 export const loadCartFromLocal = () => dispatch => {
 	localForage.getItem('cart')
 	.then(cart => {
+		if(cart){
 		console.log("loaded this cart from local: ", cart)
 		dispatch(setFromLocal(cart))
 		dispatch(calculateTotal())
 		dispatch(storeLocal())
+		}
 	})
 	.catch(console.error)
 }
