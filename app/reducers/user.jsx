@@ -30,7 +30,7 @@ export const reducer = (state = initState, action) => {
 /* ------------       DISPATCHERS     ------------------ */
 
 export const loadUserOrders = (review) => {
-	return (dispatch, getState) => {	
+	return (dispatch, getState) => {
 		return axios.get('/api/orders')
 		.then(res => res.data)
 		.then(orders=>{
@@ -39,5 +39,7 @@ export const loadUserOrders = (review) => {
     	.catch(e=>console.e)
 	};
 };
+
+export const loadAllOrder
 
 export default reducer;
