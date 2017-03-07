@@ -14,15 +14,12 @@ import CartContainer from './containers/CartContainer'
 import ProductContainer from './containers/ProductContainer'
 import ProductsContainer from './containers/ProductsContainer'
 import UserContainer from './containers/UserContainer'
-import CategoryContainer from './containers/CategoryContainer'
 import CheckoutContainer from './containers/CheckoutContainer'
 
 import {setProducts} from './reducers/product'
 import {setCategories} from './reducers/categories'
 import {loadCartFromLocal} from './reducers/cart'
-
-import {loadUserOrders} from './reducers/user';
-//import {loadUserOrderItems} from './reducers/user';
+import {loadUserOrders} from './reducers/user'
 
 const onAppEnter = () => {
   const pProducts = axios.get('api/products');
@@ -36,7 +33,6 @@ const onUserEnter = () => {
   return store.dispatch(loadUserOrders())
 }
     
-
 export default function Root () {
   return (
     <Provider store={store}>

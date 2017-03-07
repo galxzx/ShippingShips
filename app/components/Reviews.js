@@ -16,7 +16,7 @@ export default function Review ({product,reviews,review,deleteReview,setProducts
   	<div>
   	  {
       reviews&&reviews.map((review,idx)=>(
-        <div className='well margin10'>
+        <div key={review.id} className='well margin10'>
         <button 
           className='btn btn-xs btn-danger floatRt'
           onClick={e=>{deleteReview(e,review.id);setProducts(e)}}

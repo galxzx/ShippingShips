@@ -7,9 +7,8 @@ const OrderItem = require('../db/models/orderItem')
 
 module.exports = require('express').Router()
   .get('/', (req, res, next) => {
-    console.log('wwwttttfffff')
     Order.findAll({ include:  [OrderItem] })
-    .then(orders => {console.log('ooordderrz',orders);res.json(orders)})
+    .then(orders =>res.json(orders))
     .catch(next)})
   .param('orderId', (req, res, next, theOrderId) =>
     Order.findOne({where: {id:theOrderId}, include: [OrderItem]})
@@ -27,7 +26,6 @@ module.exports = require('express').Router()
   .get('/:orderId', (req, res) =>
     res.json(req.order))
   .post('/', (req, res, next) => {
-    console.log(req.body)
     Order.create(req.body.order, {include: [{model:OrderItem}]})
     .then(order => res.json(order))
     .catch(next);

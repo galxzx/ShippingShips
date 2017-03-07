@@ -6,18 +6,14 @@ const Order = require('./models/order')
 const OrderItem = require('./models/orderItem')
 
 
-const Order = require('./models/order')
-const orderItem = require('./models/orderItem')
-console.log(Order, orderItem)
-
 const seedUsers = () => db.Promise.map([
-  {name: 'so many', email: 'god@example.com', password: '1234', isAdmin: false},  //id1
-  {name: 'Barack Obama', email: 'barack@example.gov', password: '1234', isAdmin:false},  //id3
-  {name: 'Boss Playa', email: 'boss@playa.org', password: '1234', isAdmin:true} //id2
+  {name: 'so many', email: 'god@example.com', password: '1234', isAdmin: false},  
+  {name: 'Barack Obama', email: 'barack@example.gov', password: '1234', isAdmin:false},  
+  {name: 'Boss Playa', email: 'boss@playa.org', password: '1234', isAdmin:true} 
 ], user => db.model('users').create(user))
 
 const seedOrders = () => db.Promise.map([
-  {user_id:2}
+  {status: 'created', address: '123 Sesame St.',total:2000, user_id:2}
 ], order => Order.create(order))
 
 const seedOrderItems = () => db.Promise.map([
