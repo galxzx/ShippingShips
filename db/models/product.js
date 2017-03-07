@@ -37,8 +37,10 @@ const Product = db.define( 'product',  {
 	}
 
 }, {
-	getterMethods: {
+	hooks: {
+		beforeCreate: {
 
+		}
 	},
 	instanceMethods: {
 		addInventory: function(numToAdd){

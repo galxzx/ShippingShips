@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { browserHistory } from 'react-router'
+
 /* -----------------    ACTIONS     ------------------ */
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
 const SELECT_PRODUCT = 'SELECT_PRODUCT';
@@ -33,7 +35,7 @@ export const reducer = (state = initState, action) => {
 export const loadProducts = () => dispatch => {
 	axios.get('/api/products')
 	.then( res => {
-		dispatch(setProducts(res.data))
+		return dispatch(setProducts(res.data))
 	})
 	.catch( err => console.error(err))
 }
@@ -44,6 +46,17 @@ export const loadProductById = (id) => dispatch => {
 		dispatch(setOneProduct(res.data))
 	})
 	.catch( err => console.error(err))
+}
+
+export const addProduct = (product) => dispatch => {
+	axios.post('/api/products')
+	.then(res => {
+		return dispatch(loadProducts())
+	})
+	.then(()=> {
+		browserHistory.push('/products')
+	})
+	.catch(err => console.error(err))
 }
 
 export default reducer;
