@@ -27,7 +27,6 @@ const card = elements.create('card', {style})
 
 
 const renderField = ({ input, label, type, meta: {touched, error} }) => {
-  console.log(error)
   return (
   <div className="form-group">
     <label>{label}</label>
@@ -64,7 +63,6 @@ class Checkout extends Component {
     console.log('address=======>', address)
     stripe.createToken(card)
     .then(token => {
-      console.log(token)
       this.props.checkoutCart(address, token)
     })
     .catch(console.error)

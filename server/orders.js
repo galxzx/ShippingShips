@@ -7,10 +7,10 @@ const stripe = require('stripe')(env.STRIPE_SECRET);
 
 
 module.exports = require('express').Router()
-  .get('/', (req, res, next) =>
+  .get('/', (req, res, next) => {
     Order.findAll({ include:  [OrderItem] })
-    .then(orders => res.json(orders))
-    .catch(next))
+    .then(orders =>res.json(orders))
+    .catch(next)})
   .param('orderId', (req, res, next, theOrderId) =>
     Order.findOne({where: {id:theOrderId}, include: [OrderItem]})
     .then(order => {
@@ -27,7 +27,7 @@ module.exports = require('express').Router()
   .get('/:orderId', (req, res) =>
     res.json(req.order))
   .post('/', (req, res, next) => {
-    console.log("token id" ,req.body.token.token.id)
+
     Order.create(req.body.order, {include: [{model:OrderItem}]})
     .then(order => {
         stripe.charges.create({

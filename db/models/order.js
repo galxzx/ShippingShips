@@ -9,7 +9,7 @@ const Order = db.define('order', {
     defaultValue: 'created'
   },
   address: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     allowNull: false
   },
   total: {

@@ -4,6 +4,7 @@ const db = require('APP/db')
 const Product = require('./product')
 
 
+
 const {expect} = require('chai')
 
 describe('Product', function() {

@@ -13,32 +13,37 @@ import App from './components/App'
 import CartContainer from './containers/CartContainer'
 import ProductContainer from './containers/ProductContainer'
 import ProductsContainer from './containers/ProductsContainer'
-import CategoryContainer from './containers/CategoryContainer'
+import UserContainer from './containers/UserContainer'
 import CheckoutContainer from './containers/CheckoutContainer'
 
 import {setProducts} from './reducers/product'
 import {setCategories} from './reducers/categories'
-import {loadCartFromLocal} from './reducers/cart';
+import {loadCartFromLocal} from './reducers/cart'
+import {loadUserOrders} from './reducers/user'
 
 const onAppEnter = () => {
   const pProducts = axios.get('api/products');
   return pProducts.then(res => res.data)
     .then(products => store.dispatch(setProducts(products)))
     .then( () => store.dispatch(loadCartFromLocal()))
-    .catch(console.error)
+    .catch(e=>console.e)
 }
 
-
+const onUserEnter = () => {
+  return store.dispatch(loadUserOrders())
+}
+    
 export default function Root () {
   return (
     <Provider store={store}>
       <Router history={browserHistory}>
         <Route path="/" component={App} onEnter={onAppEnter}>
           <Route path="/products" component={ProductsContainer} />
-          <Route path="/product" component={ProductContainer} onEnter={onAppEnter} />
-          <Route path="/productReview" component={ProductContainer} onEnter={onAppEnter} />
+          <Route path="/product" component={ProductContainer}  />
+          <Route path="/productReview" component={ProductContainer}  />
           <Route path="/cart" component={CartContainer} />
           <Route path="/signup" component={SignUp} />
+          <Route path="/users/:userId" component={UserContainer} onEnter={onUserEnter} />
           <Route path="/checkout" component={CheckoutContainer} />
           <IndexRedirect to="/products"/>
         </Route>

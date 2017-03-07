@@ -18,7 +18,7 @@ describe('<WhoAmI/>', () => {
     root = shallow(<WhoAmI user={user} logout={logout}/>)
   )
 
-  it('greets the user', () => {
+  xit('greets the user', () => {
     expect(root.text()).to.contain(user.name)
   })
 

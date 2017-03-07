@@ -76,7 +76,6 @@ const reducer = (state = initState, action) => {
 		case STORE_CART_LOCAL:
 			localForage.setItem('cart', newState.cart).then( () => {
 				localForage.getItem('cart').then( savedCart => {
-					console.log("this is your Cart", savedCart);
 				})
 			});
 			break;
@@ -125,14 +124,12 @@ export const checkoutCart = (address, token) => (dispatch, getState) => {
 		return {product_id: item.info.id, price: item.info.price, quantity: item.quantity}
 	})
 	const user_id = state.auth.id || null;
-	console.log("stringify address", address)
 	const body = {
 		order: {user_id, orderItems, address:"temp address", total:state.cart.total},
 		token: token
 	}
 	axios.post('/api/orders', body)
 	.then(res => res.data)
-	.then(charge => console.log(charge))
 	.catch(console.error.bind(console))
 
 }

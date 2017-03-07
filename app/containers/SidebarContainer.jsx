@@ -15,7 +15,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onClick (category) {
-      console.log('this is category', category)
       dispatch(loadProductsInCat(category))
       dispatch(setCategory(category))
     },
