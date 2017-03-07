@@ -6,8 +6,8 @@ const Product = require('./product')
 
 const {expect} = require('chai')
 
-describe('Product', () => {
-
+describe('Product', function() {
+  this.timeout(5000)
   before('wait for the db', () => db.didSync)
 
   let product;
