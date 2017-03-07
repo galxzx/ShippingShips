@@ -78,7 +78,9 @@ label, input {
 	padding: 5px;
 }
 
-
+p > span {
+	background-color: #42e2f4;
+}
 
 
 .field {

@@ -9,6 +9,8 @@ const REMOVE_ITEM_FROM_CART = 'REMOVE_ITEM_FROM_CART';
 const CALCULATE_TOTAL = 'CALCULATE_TOTAL';
 const STORE_CART_LOCAL = 'STORE_CART_LOCAL';
 const SET_FROM_LOCAL = 'SET_FROM_LOCAL';
+const INCREMENT_QUANT = 'INCREMENT_QUANT';
+const DECREMENT_QUANT = 'DECREMENT_QUANT';
 
 /* ------------   ACTION CREATORS     ------------------ */
 
@@ -17,6 +19,8 @@ export const removeItem = item => ({type: REMOVE_ITEM_FROM_CART, item});
 export const calculateTotal = () => ( { type: CALCULATE_TOTAL});
 export const storeLocal = () => ( { type: STORE_CART_LOCAL});
 export const setFromLocal = (cart) => ({ type: SET_FROM_LOCAL, cart});
+export const incrementQuant = (item) => ({type: INCREMENT_QUANT, item});
+export const decrementQuant = (item) => ({type: DECREMENT_QUANT, item})
 
 /* ------------       REDUCER     ------------------ */
 
@@ -30,8 +34,14 @@ const localState = localForage.setItem('cart', []);
 
 const reducer = (state = initState, action) => {
 	const newState = Object.assign({}, state);
-
-
+	let itemIndex = -1;
+	if(action.item){
+		newState.cart.forEach( (entry, idx) => {
+			if(entry.info.id == action.item.id){
+				itemIndex = idx;
+			}
+		})
+	}
 
 
 	switch(action.type){
@@ -52,11 +62,6 @@ const reducer = (state = initState, action) => {
 			break;
 
 		case REMOVE_ITEM_FROM_CART:
-			let itemIndex = -1;
-			newState.cart.forEach( (entry, idx) => {
-				if(entry.info == action.item)
-					itemIndex = idx;
-			})
 			if(itemIndex >= 0){
 				newState.cart.splice( itemIndex, 1);
 			}
@@ -85,8 +90,21 @@ const reducer = (state = initState, action) => {
 			newState.cart = action.cart
 			break;
 
-		default:
+		case INCREMENT_QUANT:
+			console.log(newState.cart, itemIndex)
+			newState.cart[itemIndex].quantity++;
+			if(itemIndex < 0){
+				console.error("Item not found on cart state");
+			}
+			break;
 
+		case DECREMENT_QUANT:
+			if (newState.cart[itemIndex] && newState.cart[itemIndex].quantity > 1){
+				newState.cart[itemIndex].quantity--;
+			}
+			break;
+
+		default:
 			return state
 	}
 	return newState;
@@ -137,5 +155,14 @@ export const checkoutCart = (address, token) => (dispatch, getState) => {
 
 }
 
+export const increment = (item) => (dispatch) => {
+	dispatch(incrementQuant(item));
+	dispatch(calculateTotal());
+}
+
+export const decrement = (item) => (dispatch) => {
+	dispatch(decrementQuant(item));
+	dispatch(calculateTotal());
+}
 
 export default reducer;
