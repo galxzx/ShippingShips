@@ -6,17 +6,23 @@ import store from '../store'
 const SET_USER_ORDERS = 'SET_USER_ORDERS';
 const SET_ADMIN_ORDER = 'SET_ADMIN_ORDER';
 const SET_CURRENT_ORDER = 'SET_CURRENT_ORDER';
+=======const SET_CURRENT_USER = 'SET_CURRENT_USER';
+
 
 /* ------------   ACTION CREATORS     ------------------ */
 
 export const setUserOrders = (orders) => ({ type: SET_USER_ORDERS, orders})
 export const setAdminOrder = (order) => ({ type: SET_ADMIN_ORDER, order})
+
 export const setCurrentOrder = (order) => ({type: SET_CURRENT_ORDER, order})
+export const setCurrentUser = (user) => ({ type: SET_CURRENT_USER, user})
+
 /* ------------       REDUCER     ------------------ */
 const initState = {
 	orders: [],
 	adminOrder: {orderItems:[]},
 	currentOrder: {orderItems:[]}
+	currentUser: {}
 }
 
 export const reducer = (state = initState, action) => {
@@ -35,6 +41,12 @@ export const reducer = (state = initState, action) => {
 			newState.currentOrder = action.order
 			break;
 
+		case SET_CURRENT_USER:
+			newState.currentUser = action.user
+			break;
+
+
+
 		default:
 			return state;
 	}
@@ -42,6 +54,17 @@ export const reducer = (state = initState, action) => {
 }
 
 /* ------------       DISPATCHERS     ------------------ */
+export const loadCurrentUser = (userId) => {
+	return (dispatch, getState) => {
+		return axios.get('/api/users/'+userId)
+		.then(res => res.data)
+		.then(user=>{
+			dispatch(setCurrentUser(user))
+		})
+    	.catch(e=>console.error(e))
+	};
+};
+
 
 
 export const loadUserOrders = (id) => {

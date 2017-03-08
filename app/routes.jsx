@@ -24,7 +24,7 @@ import OrderLandingContainer from './containers/OrderLandingContainer'
 import {loadProducts, loadProduct} from './reducers/product'
 import {setCategories} from './reducers/categories'
 import {loadCartFromLocal} from './reducers/cart'
-import {loadUserOrders, loadAllOrders, loadAdminOrder} from './reducers/user'
+import {loadUserOrders, loadAllOrders, loadAdminOrder, loadCurrentUser} from './reducers/user'
 
 
 const onAppEnter = () => {
@@ -32,8 +32,10 @@ const onAppEnter = () => {
   store.dispatch(loadProducts())
 }
 
-const onUserEnter = () => {
-  return store.dispatch(loadUserOrders())
+const onUserEnter = (paramInfo) => {
+  const userId = paramInfo.params.userId
+  store.dispatch(loadCurrentUser(userId)) //enables user page refresh without losing information
+  store.dispatch(loadUserOrders(userId))
 }
 
 const adminOrdersEnter = () => {
@@ -62,7 +64,7 @@ export default function Root () {
           <Route path="/productReview" component={ProductContainer}  />
           <Route path="/cart" component={CartContainer} />
           <Route path="/signup" component={SignUp} />
-          <Route path="/users/:userId" component={UserContainer}  />
+          <Route path="/users/:userId" component={UserContainer} onEnter={onUserEnter} />
           <Route path="/checkout" component={CheckoutContainer} />
           <Route path="/completeorder" component={OrderLandingContainer} />
           <Router path="/admin"  component={LandingContainer}>

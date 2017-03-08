@@ -10,11 +10,11 @@ const {mustBeLoggedIn, forbidden, mustBeAdmin} = require('./auth.filters')
 
 module.exports = require('express').Router()
   .get('/', (req, res, next) => {
-    Order.findAll({ include:  [OrderItem] })
+    Order.findAll({ include: [ {model: OrderItem, include: [Product]}] })
     .then(orders =>res.json(orders))
     .catch(next)})
   .param('orderId', (req, res, next, theOrderId) =>
-    Order.findOne({where: {id:theOrderId}, include: [OrderItem]})
+    Order.findOne({where: {id:theOrderId}, include:[ {model: OrderItem, include: [Product]}] })
     .then(order => {
       if (!order) {
         const err = Error('Order Not Found');
@@ -54,7 +54,7 @@ module.exports = require('express').Router()
     })
 
   .get('/users/:userId', (req, res, next) => {
-    Order.findAll({where:{user_id:req.params.userId}, include: [OrderItem]})
+    Order.findAll({where:{user_id:req.params.userId}, include: [ {model: OrderItem, include: [Product]}] })
     .then(orders=>
       res.send(orders)
     ).catch(next)
