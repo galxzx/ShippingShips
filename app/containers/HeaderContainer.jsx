@@ -1,6 +1,7 @@
 import Header from '../components/Header';
 import { connect } from 'react-redux';
 import {loadProductsInCat, setCategory} from '../reducers/categories'
+import {updateFilter} from '../reducers/filter';
 
 const mapStateToProps = (state) => {
   return {
@@ -16,6 +17,9 @@ const mapDispatchToProps = (dispatch) => {
     onClick (category) {
       dispatch(loadProductsInCat(category))
       dispatch(setCategory(category))
+    },
+    handleFilterChange(event){
+      dispatch(updateFilter(event.target.value));
     }
   }
  }

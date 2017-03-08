@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 export default function Product (props) {
   let allProducts = props.categoryProducts.length ? props.categoryProducts : props.allProducts;
   const addItemToCart = props.addItemToCart;
+  const filter = props.filter;
 
   const handleCartClick= (evt, product) => {
       props.addItemToCart(product)
@@ -22,7 +23,9 @@ export default function Product (props) {
     <div>
       <ul className='plainList'>
       {
-      allProducts&&allProducts.map(product=>(
+      allProducts&&allProducts.filter( ({title}) => {
+        return title.toLowerCase().includes(filter);
+      }).map(product=>(
         <div key={product.id} className='well floatLeft margin10' >
           <li >
             <button className = 'cart-btn center btn-primary' onClick={e=>handleCartClick(e,product)} >Add To Cart</button>
@@ -43,7 +46,7 @@ export default function Product (props) {
             <p>Average Stars:
             {(product.reviews.reduce( (a,b)=>a + b.stars,0)/product.reviews.length).toFixed(1) || "Not Yet Rated"}
             </p>
-          
+
           </li>
         </div>
       ))
