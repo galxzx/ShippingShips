@@ -37,20 +37,16 @@ const Product = db.define( 'product',  {
 	}
 
 }, {
-	getterMethods: {
-
-	},
 	instanceMethods: {
 		addInventory: function(numToAdd){
 			this.inventory = this.inventory + numToAdd;
 		}
 	},
-	classMethods: {
-
-	},
 
 	hooks: {
 		beforeCreate: (product) => {
+			if(typeof product.categories === 'string') product.categories = product.categories.split(",")
+
 			if(product.categories.length < 1) throw new Error('Product must have at least one category');
 		}
 	}

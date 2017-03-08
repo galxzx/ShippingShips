@@ -4,13 +4,16 @@ import store from '../store'
 /* -----------------    ACTIONS     ------------------ */
 
 const SET_USER_ORDERS = 'SET_USER_ORDERS';
+const SET_ADMIN_ORDER = 'SET_ADMIN_ORDER';
+
 /* ------------   ACTION CREATORS     ------------------ */
 
 export const setUserOrders = (orders) => ({ type: SET_USER_ORDERS, orders})
-
+export const setAdminOrder = (order) => ({ type: SET_ADMIN_ORDER, order})
 /* ------------       REDUCER     ------------------ */
 const initState = {
-	orders: []
+	orders: [],
+	adminOrder: {orderItems:[]}
 }
 
 export const reducer = (state = initState, action) => {
@@ -21,6 +24,11 @@ export const reducer = (state = initState, action) => {
 			newState.orders = action.orders
 			break;
 
+		case SET_ADMIN_ORDER:
+			newState.adminOrder = action.order
+			break;
+
+
 		default:
 			return state;
 	}
@@ -29,15 +37,45 @@ export const reducer = (state = initState, action) => {
 
 /* ------------       DISPATCHERS     ------------------ */
 
+
 export const loadUserOrders = (id) => {
-	return (dispatch, getState) => {	
+	return (dispatch, getState) => {
 		return axios.get('/api/orders/users/'+id)
 		.then(res => res.data)
 		.then(orders=>{
 			dispatch(setUserOrders(orders))
 		})
-    	.catch(e=>console.e)
+    	.catch(e=>console.error(e))
 	};
 };
+
+export const loadAllOrders = () => {
+	return (dispatch, getState) => {
+		return axios.get('/api/orders')
+		.then(res => res.data)
+		.then(orders=>{
+			dispatch(setUserOrders(orders))
+		})
+    	.catch(e=>console.error(e))
+	};
+};
+
+export const changeOrderStatus = (orderId, status) => dispatch => {
+	return axios.put(`/api/orders/${orderId}`, {status})
+	.then (() => {
+		return dispatch(loadAllOrders())
+	})
+	.catch(e=>console.error(e))
+}
+
+export const loadAdminOrder = (orderId) => dispatch => {
+	return axios.get(`/api/orders/admin/${orderId}`)
+		.then(res => res.data)
+		.then(order => {
+			console.log('order', order)
+			dispatch(setAdminOrder(order))
+		})
+		.catch(e => console.error(e))
+}
 
 export default reducer;

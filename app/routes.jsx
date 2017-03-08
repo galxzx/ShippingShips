@@ -15,10 +15,15 @@ import ProductContainer from './containers/ProductContainer'
 import ProductsContainer from './containers/ProductsContainer'
 import UserContainer from './containers/UserContainer'
 import CheckoutContainer from './containers/CheckoutContainer'
+import AddProductContainer from './containers/AddProductContainer'
+import LandingContainer from './containers/LandingContainer'
+import AdminOrdersContainer from './containers/AdminOrdersContainer'
+import AdminOrderContainer from './containers/AdminOrderContainer'
 
 import {loadProducts, loadProduct} from './reducers/product'
 import {setCategories} from './reducers/categories'
 import {loadCartFromLocal} from './reducers/cart'
+import {loadUserOrders, loadAllOrders, loadAdminOrder} from './reducers/user'
 
 
 const onAppEnter = () => {
@@ -26,12 +31,26 @@ const onAppEnter = () => {
   store.dispatch(loadProducts())
 }
 
+const onUserEnter = () => {
+  return store.dispatch(loadUserOrders())
+}
+
+const adminOrdersEnter = () => {
+  return store.dispatch(loadAllOrders())
+}
+
+const onAdminOrderEnter = (paramInfo) => {
+  const orderId = paramInfo.params.orderId
+  store.dispatch(loadAdminOrder(orderId))
+}
 const onProductEnter = (paramInfo) => {
   const productId = paramInfo.params.productId
   store.dispatch(loadProducts())
   store.dispatch(loadProduct(productId))
 }
-    
+
+
+
 export default function Root () {
   return (
     <Provider store={store}>
@@ -44,7 +63,14 @@ export default function Root () {
           <Route path="/signup" component={SignUp} />
           <Route path="/users/:userId" component={UserContainer}  />
           <Route path="/checkout" component={CheckoutContainer} />
-          <IndexRedirect to="/products"/>
+          <Router path="/admin"  component={LandingContainer}>
+            <Route path="/admin/addProduct" component={AddProductContainer} />
+            <Route path="/admin/landing"  />
+            <Route path="/admin/orders" component={AdminOrdersContainer} onEnter={adminOrdersEnter} />
+            <Route path="/admin/orders/:orderId" component={AdminOrderContainer} onEnter={onAdminOrderEnter} />
+            <IndexRedirect to="/admin/landing" />
+          </Router>
+          <IndexRedirect to="/products" />
         </Route>
       </Router>
     </Provider>

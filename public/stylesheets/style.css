@@ -105,4 +105,8 @@ label, input {
 
 .floatRt {
 	float:right;
+}
 
+.landing {
+  margin: 10px;
+}
