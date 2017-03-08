@@ -20,19 +20,22 @@ export default function User (props) {
       orders.map(order=>(
         <div key={order.id}>
         <h3>Order ID#: {order.id}</h3>
-        {
-        order.orderItems.map((item,idx)=>(
-          <div key ={item.id} className='margin10' >
-          <Link to={'/product/'+item.product.id}  ><strong className='red'>{item.product.title+" "}</strong></Link>
-          <strong>${item.product.price}</strong>
-          </div>
-        ))
-        }
+        
         <div className='margin10'>
         <p>Status: {order.status}</p>
         <p>Address: {order.address}</p>
-        <p>Order Total: {order.id}</p>
         <p>Date Placed/Updated: {order.updated_at}</p>
+        <h4>Order Items</h4>
+        {
+        order.orderItems.map((item,idx)=>(
+          <div key ={item.id} className='margin10' >
+          <span>{item.quantity + '  - '}</span>
+          <Link to={'/product/'+item.product.id}  ><strong className='red'>{item.product.title+" "}</strong></Link>
+          <strong>{' - $' + item.product.price}</strong>
+          </div>
+        ))
+        }
+        <h4 className='margin10'>Total: ${order.total}</h4>
         </div>
         </div>
       ))
