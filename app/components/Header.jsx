@@ -4,11 +4,16 @@ import Login from './Login';
 import Logout from './Logout';
 import WhoAmI from './WhoAmI';
 import FilterInput from './FilterInput';
+import { updateFilter } from '../reducers/filter';
 
-const Header = ({category, auth, onClick, cart}) => {
+const Header = ({category, auth, onClick, cart, handleFilterChange}) => {
 
  const categories = category.categories;
  const selectedCategory = category.selectedCategory
+
+ const handleChange = (evt) => {
+  console.log(evt.target.value);
+ }
 
   return (
   <div className="container-fluid">
@@ -32,7 +37,7 @@ const Header = ({category, auth, onClick, cart}) => {
               <Link to='/cart' className="cart"><span className="glyphicon glyphicon-shopping-cart"></span>: {cart.items}</Link>
             </li>
           </ul>
-          <FilterInput/>
+          <FilterInput onHandleChange={handleFilterChange}/>
         </div>
       </nav>
     </div>
