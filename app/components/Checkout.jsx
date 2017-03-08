@@ -69,7 +69,7 @@ class Checkout extends Component {
   }
 
   render(){
-
+    console.log("message", this.props.cart.message)
     const handleSubmit = this.props.handleSubmit;
     const submitting = this.props.submitting;
     return (
@@ -92,7 +92,7 @@ class Checkout extends Component {
           <button type="submit" disabled={submitting} className="btn btn-primary">Checkout</button>
         </form>
 
-
+        <span>{this.props.cart.message ? this.props.cart.message : null}</span>
       </div>
     )
   }

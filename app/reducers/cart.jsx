@@ -13,6 +13,7 @@ const STORE_CART_LOCAL = 'STORE_CART_LOCAL';
 const SET_FROM_LOCAL = 'SET_FROM_LOCAL';
 const INCREMENT_QUANT = 'INCREMENT_QUANT';
 const DECREMENT_QUANT = 'DECREMENT_QUANT';
+const SET_MESSAGE = 'SET_MESSAGE';
 
 /* ------------   ACTION CREATORS     ------------------ */
 
@@ -22,14 +23,16 @@ export const calculateTotal = () => ( { type: CALCULATE_TOTAL});
 export const storeLocal = () => ( { type: STORE_CART_LOCAL});
 export const setFromLocal = (cart) => ({ type: SET_FROM_LOCAL, cart});
 export const incrementQuant = (item) => ({type: INCREMENT_QUANT, item});
-export const decrementQuant = (item) => ({type: DECREMENT_QUANT, item})
+export const decrementQuant = (item) => ({type: DECREMENT_QUANT, item});
+export const setMessage = (message) => ({type: SET_MESSAGE, message});
 
 /* ------------       REDUCER     ------------------ */
 
 const initState = {
 	cart: [],
 	total: 0,
-	items: 0
+	items: 0,
+	message: ""
 }
 
 const localState = localForage.setItem('cart', []);
@@ -105,6 +108,10 @@ const reducer = (state = initState, action) => {
 			}
 			break;
 
+		case SET_MESSAGE:
+			newState.message = action.message;
+			break;
+
 		default:
 			return state
 	}
@@ -138,22 +145,29 @@ export const loadCartFromLocal = () => dispatch => {
 }
 
 export const checkoutCart = (address, token) => (dispatch, getState) => {
-
+	dispatch(setMessage(""))
 	const state = getState()
+	console.log('address', address)
+	const add = JSON.stringify(address)
+	console.log('add', add)
 	const orderItems = state.cart.cart.map(item => {
 		return {product_id: item.info.id, price: item.info.price, quantity: item.quantity}
 	})
 	const user_id = state.auth.id || null;
 	const body = {
-		order: {user_id, orderItems, address:"temp address", total:state.cart.total},
+		order: {user_id, orderItems, address:add, total:state.cart.total},
 		token: token
 	}
 	axios.post('/api/orders', body)
 	.then(res => res.data)
 	.then(order => {
 		console.log(order)
+		if(order.message){
+			dispatch(setMessage('There was a problem processing your order'))
+		}else {
 		dispatch(setCurrentOrder(order))
 		browserHistory.push("/completeorder")
+	}
 	})
 	.catch(console.error.bind(console))
 

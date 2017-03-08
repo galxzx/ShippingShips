@@ -33,7 +33,7 @@ export const reducer = (state = initState, action) => {
 
 		case SET_CURRENT_ORDER:
 			newState.currentOrder = action.order
-
+			break;
 
 		default:
 			return state;
