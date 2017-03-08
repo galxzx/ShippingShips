@@ -11,8 +11,8 @@ const rootReducer = combineReducers({
   signup: require('./signup').default,
   form: form,
   review: require('./review').default,
-  signup: require('./signup').default,
-  user: require('./user').default
+  user: require('./user').default,
+  filter: require('./filter').default
 })
 
 export default rootReducer
