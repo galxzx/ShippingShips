@@ -6,7 +6,7 @@ import store from '../store'
 const SET_USER_ORDERS = 'SET_USER_ORDERS';
 const SET_ADMIN_ORDER = 'SET_ADMIN_ORDER';
 const SET_CURRENT_ORDER = 'SET_CURRENT_ORDER';
-=======const SET_CURRENT_USER = 'SET_CURRENT_USER';
+const SET_CURRENT_USER = 'SET_CURRENT_USER';
 
 
 /* ------------   ACTION CREATORS     ------------------ */
@@ -21,7 +21,7 @@ export const setCurrentUser = (user) => ({ type: SET_CURRENT_USER, user})
 const initState = {
 	orders: [],
 	adminOrder: {orderItems:[]},
-	currentOrder: {orderItems:[]}
+	currentOrder: {orderItems:[]},
 	currentUser: {}
 }
 
