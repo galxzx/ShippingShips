@@ -40,12 +40,12 @@ export const loadProducts = () => dispatch => {
 	.catch( err => console.error(err))
 }
 
-export const loadProductById = (id) => dispatch => {
+export const loadProduct = (id) => dispatch => {
 	axios.get('/api/products/'+id)
-	.then( res => {
-		dispatch(setOneProduct(res.data))
-	})
-	.catch( err => console.error(err))
+ 	.then(product=> {
+    	dispatch(setOneProduct(product.data))
+  	})
+  	.catch(e=>console.e)
 }
 
 export const addProduct = (product) => dispatch => {

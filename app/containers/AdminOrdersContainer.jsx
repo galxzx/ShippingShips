@@ -1,23 +1,21 @@
 import AdminOrders from '../components/AdminOrders';
 import {connect} from 'react-redux'
+import {changeOrderStatus} from '../reducers/user'
 
 
 const mapstate = (state) => {
   return {
-    orders: user.orders
+    orders: state.user.orders
   };
 }
 
 const mapDisptachToProps = (dispatch) => {
   return {
-    changeOrderStatus (product) {dispatch(addProduct(product))}
+    changeOrderStatus (orderId, status) {dispatch(changeOrderStatus(orderId, status))}
     // : (address, token) => dispatch(checkoutCart(address, token))
   }
 }
 
-const ProductForm = reduxForm({
-  form: 'product',
-  validate
-})(AddProduct)
 
-export default connect(mapstate, mapDisptachToProps)(ProductForm);
+
+export default connect(mapstate, mapDisptachToProps)(AdminOrders);

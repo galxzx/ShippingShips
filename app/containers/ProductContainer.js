@@ -5,6 +5,7 @@ import {addItemToCart} from 'APP/app/reducers/cart'
 
 const mapStateToProps = (state) => {
   return {
+    allProducts: state.product.allProducts,
     selectedProduct: state.product.selectedProduct,
     updatedReviews: state.review.updatedReviews,
     user: state.auth,

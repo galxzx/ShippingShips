@@ -4,6 +4,7 @@ const db = require('APP/db')
 const Order = require('../db/models/order')
 const OrderItem = require('../db/models/orderItem')
 const stripe = require('stripe')(env.STRIPE_SECRET);
+const {mustBeLoggedIn, forbidden, mustBeAdmin} = require('./auth.filters')
 
 
 module.exports = require('express').Router()
@@ -47,9 +48,23 @@ module.exports = require('express').Router()
       })
     }).catch(next)
     })
-    
-  .get('/users/:userId', (req, res) => {
-    Order.findAll({where:{user_id:req.params.userId}})
+
+  .get('/users/:userId', (req, res, next) => {
+    Order.findAll({where:{user_id:req.params.userId}, include: [OrderItem]})
     .then(orders=>
       res.send(orders)
-    )})
+    ).catch(next)
+  })
+
+  .put('/:orderId', (req, res, next)=> {
+    console.log('body', req.body)
+    Order.findById(req.params.orderId)
+    .then(order => {
+      return order.update({status: req.body.status})
+      .then(order => {
+        console.log(order)
+        res.send(order)
+      })
+    })
+    .catch(next)
+  })

@@ -39,19 +39,27 @@ export const loadUserOrders = (id) => {
 		.then(orders=>{
 			dispatch(setUserOrders(orders))
 		})
-    	.catch(e=>console.e)
+    	.catch(e=>console.error(e))
 	};
 };
 
-export const loadAllOrders = (review) => {
+export const loadAllOrders = () => {
 	return (dispatch, getState) => {
 		return axios.get('/api/orders')
 		.then(res => res.data)
 		.then(orders=>{
 			dispatch(setUserOrders(orders))
 		})
-    	.catch(e=>console.e)
+    	.catch(e=>console.error(e))
 	};
 };
+
+export const changeOrderStatus = (orderId, status) => dispatch => {
+	return axios.put(`/api/orders/${orderId}`, {status})
+	.then (() => {
+		return dispatch(loadAllOrders())
+	})
+	.catch(e=>console.error(e))
+}
 
 export default reducer;
