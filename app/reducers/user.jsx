@@ -5,15 +5,18 @@ import store from '../store'
 
 const SET_USER_ORDERS = 'SET_USER_ORDERS';
 const SET_ADMIN_ORDER = 'SET_ADMIN_ORDER';
+const SET_CURRENT_ORDER = 'SET_CURRENT_ORDER';
 
 /* ------------   ACTION CREATORS     ------------------ */
 
 export const setUserOrders = (orders) => ({ type: SET_USER_ORDERS, orders})
 export const setAdminOrder = (order) => ({ type: SET_ADMIN_ORDER, order})
+export const setCurrentOrder = (order) => ({type: SET_CURRENT_ORDER, order})
 /* ------------       REDUCER     ------------------ */
 const initState = {
 	orders: [],
-	adminOrder: {orderItems:[]}
+	adminOrder: {orderItems:[]},
+	currentOrder: {orderItems:[]}
 }
 
 export const reducer = (state = initState, action) => {
@@ -27,6 +30,9 @@ export const reducer = (state = initState, action) => {
 		case SET_ADMIN_ORDER:
 			newState.adminOrder = action.order
 			break;
+
+		case SET_CURRENT_ORDER:
+			newState.currentOrder = action.order
 
 
 		default:

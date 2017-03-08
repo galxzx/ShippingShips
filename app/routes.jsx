@@ -19,6 +19,7 @@ import AddProductContainer from './containers/AddProductContainer'
 import LandingContainer from './containers/LandingContainer'
 import AdminOrdersContainer from './containers/AdminOrdersContainer'
 import AdminOrderContainer from './containers/AdminOrderContainer'
+import OrderLandingContainer from './containers/OrderLandingContainer'
 
 import {loadProducts, loadProduct} from './reducers/product'
 import {setCategories} from './reducers/categories'
@@ -63,6 +64,7 @@ export default function Root () {
           <Route path="/signup" component={SignUp} />
           <Route path="/users/:userId" component={UserContainer}  />
           <Route path="/checkout" component={CheckoutContainer} />
+          <Route path="/completeorder" component={OrderLandingContainer} />
           <Router path="/admin"  component={LandingContainer}>
             <Route path="/admin/addProduct" component={AddProductContainer} />
             <Route path="/admin/landing"  />

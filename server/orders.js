@@ -36,14 +36,14 @@ module.exports = require('express').Router()
           currency: "usd",
           description: "example order",
           metadata: {order_id: order.id},
-          source: req.body.token.token.id
+          source: req.body.token.token.ids
         }, (err, charge)=> {
           if(err){
             res.send(err)
           }
           else{
             order.update({status: 'processing'})
-            .then(()=> res.send(charge))
+            .then((order)=> res.send(order))
           }
 
       })
@@ -62,6 +62,7 @@ module.exports = require('express').Router()
     .then(order => {
       return order.update({status: req.body.status})
       .then(order => {
+        console.log(order)
         res.send(order)
       })
     })

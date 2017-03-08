@@ -1,5 +1,7 @@
 import axios from 'axios';
 import localForage from 'localforage';
+import { setCurrentOrder } from './user';
+import {browserHistory} from 'react-router';
 
 
 /* -----------------    ACTIONS     ------------------ */
@@ -148,6 +150,11 @@ export const checkoutCart = (address, token) => (dispatch, getState) => {
 	}
 	axios.post('/api/orders', body)
 	.then(res => res.data)
+	.then(order => {
+		console.log(order)
+		dispatch(setCurrentOrder(order))
+		browserHistory.push("/completeorder")
+	})
 	.catch(console.error.bind(console))
 
 }
