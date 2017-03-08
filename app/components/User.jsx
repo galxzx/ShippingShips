@@ -18,7 +18,7 @@ export default function User (props) {
       <h6>Order Info</h6>
       {
       orders.map(order=>(
-        <div key={order.id}>
+        <div className='well' key={order.id}>
         <h3>Order ID#: {order.id}</h3>
         
         <div className='margin10'>
