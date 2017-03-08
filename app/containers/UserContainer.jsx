@@ -1,13 +1,12 @@
 
 import User from '../components/User';
 import { connect } from 'react-redux';
-// import {deleteReview} from 'APP/app/reducers/review'
-// import {loadProducts} from 'APP/app/reducers/product'
 
 const mapStateToProps = (state) => {
   return {
   	user: state.auth,
-    orders: state.user.orders
+    orders: state.user.orders,
+    currentUser: state.user.currentUser
   };
 };
 

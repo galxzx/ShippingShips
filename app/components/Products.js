@@ -19,6 +19,9 @@ export default function Product (props) {
       props.selectCategory(product)
   }
 
+  const averageStars = product => product.reviews.length ?  (product.reviews.reduce( (a,b)=>a + b.stars,0)/product.reviews.length).toFixed(1) : "Not Yet Rated"
+  
+
   return (
     <div>
       <ul className='plainList'>
@@ -43,8 +46,8 @@ export default function Product (props) {
                 <button key={category} className='btn btn-xs btn-primary margin3' onClick={e=>handleCategoryClick(e,category)}>{category}</button>
               ))
              }
-            <p>Average Stars:
-            {(product.reviews.reduce( (a,b)=>a + b.stars,0)/product.reviews.length).toFixed(1) || "Not Yet Rated"}
+            <p>Average Stars: 
+              <strong className='red'>{' ' + averageStars(product)}</strong>
             </p>
 
           </li>
