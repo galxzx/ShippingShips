@@ -31,7 +31,7 @@ const renderField = ({ input, label, type, meta: {touched, error} }) => {
   <div className="form-group">
     <label>{label}</label>
     <input {...input} placeholder={label} type={type} className="form-control field" />
-    {touched && error && <span>{error}</span>}
+    {touched && error && <span className="err">{error}</span>}
   </div>
 )}
 
@@ -69,7 +69,7 @@ class Checkout extends Component {
   }
 
   render(){
-
+    console.log("message", this.props.cart.message)
     const handleSubmit = this.props.handleSubmit;
     const submitting = this.props.submitting;
     return (
@@ -92,7 +92,7 @@ class Checkout extends Component {
           <button type="submit" disabled={submitting} className="btn btn-primary">Checkout</button>
         </form>
 
-
+        <span>{this.props.cart.message ? this.props.cart.message : null}</span>
       </div>
     )
   }

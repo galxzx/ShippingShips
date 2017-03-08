@@ -115,3 +115,7 @@ label, input {
 	color: red;
 	font-style:bold;
 }
+
+.err {
+  color: red;
+}

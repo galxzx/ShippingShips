@@ -29,6 +29,7 @@ module.exports = require('express').Router()
   .get('/:orderId', (req, res) =>
     res.json(req.order))
   .post('/', (req, res, next) => {
+    console.log(req.body)
     Order.create(req.body.order, {include: [{model:OrderItem}]})
     .then(order => {
         stripe.charges.create({
@@ -40,10 +41,12 @@ module.exports = require('express').Router()
         }, (err, charge)=> {
           if(err){
             res.send(err)
+            console.log(err)
           }
           else{
+            console.log(charge)
             order.update({status: 'processing'})
-            .then(()=> res.send(charge))
+            .then((order)=> res.send(order))
           }
 
       })
@@ -62,6 +65,7 @@ module.exports = require('express').Router()
     .then(order => {
       return order.update({status: req.body.status})
       .then(order => {
+        console.log(order)
         res.send(order)
       })
     })
