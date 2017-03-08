@@ -8,9 +8,9 @@ import store from '../store'
 export const WhoAmI = ({ user, logout }) => (
   <div className="whoami">
    	<span className="whoami-user-name"
-   		  onClick={e=>{e.preventDefault();store.dispatch(loadUserOrders(user.id))}}
+   		  //onClick={e=>{e.preventDefault();store.dispatch(loadUserOrders(user.id))}}
    	>
-   		 <Link to={`users/${user.id}`}> 
+   		 <Link to={`/users/${user.id}`}> 
 			{user && user.name} 
 		 </Link>
 	</span>

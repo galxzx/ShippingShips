@@ -110,3 +110,8 @@ label, input {
 .landing {
   margin: 10px;
 }
+
+.red {
+	color: red;
+	font-style:bold;
+}

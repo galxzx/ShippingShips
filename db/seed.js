@@ -19,7 +19,9 @@ const seedOrders = () => db.Promise.map([
 
 const seedOrderItems = () => db.Promise.map([
   {price:100, quantity: 2, order_id: 1, product_id: 1},
-  {price:50000, quantity: 1, order_id: 1, product_id: 2}
+  {price:50000, quantity: 1, order_id: 1, product_id: 2},
+  {price:310000, quantity: 1, order_id: 2, product_id: 3},
+  {price:50000, quantity: 1, order_id: 2, product_id: 4}
 ], orderItem => OrderItem.create(orderItem))
 
 const seedProducts = () => db.Promise.map([
