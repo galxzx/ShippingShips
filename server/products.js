@@ -26,7 +26,6 @@ module.exports = require('express').Router()
     .catch(next))
 
   .get('/:productId', (req, res, next) => {
-    console.log('requizlebody',req.body)
     res.json(req.product)
     })
 
