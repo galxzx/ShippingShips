@@ -8,7 +8,8 @@ const mapStateToProps = (state) => {
   return {
     allProducts: state.product.allProducts,
   	selectedProduct: state.product.selectedProduct,
-    categoryProducts: state.category.selCatProducts
+    categoryProducts: state.category.selCatProducts,
+    filter: state.filter.text
   };
 };
 

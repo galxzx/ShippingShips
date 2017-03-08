@@ -5,7 +5,7 @@ const FilterInput = (props) => {
     <form className="form-group" style={{marginTop: '20px'}}>
       <input
         className="form-control"
-        placeholder="Search"
+        placeholder="Search by Title"
         onChange={props.onHandleChange}
         size="10"
         type="text"

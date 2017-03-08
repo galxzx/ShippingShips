@@ -21,7 +21,7 @@ export const reducer = (state = initState, action) => {
   switch (action.type){
 
     case CHANGE_FILTER:
-      newState.text = action.text;
+      newState.text = action.text.toLowerCase();
       break;
     default:
       return state;
