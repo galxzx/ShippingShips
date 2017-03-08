@@ -49,7 +49,7 @@ module.exports = require('express').Router()
     })
     
   .get('/users/:userId', (req, res) => {
-    Order.findAll({where:{user_id:req.params.userId}})
+    Order.findAll({where:{user_id:req.params.userId}, include: [OrderItem]})
     .then(orders=>
       res.send(orders)
     )})

@@ -1,6 +1,7 @@
 import React from 'react';
 
 export default function User ({orders, user}) {
+  console.log('orrderzz', orders)
   
   return (
   	<div>

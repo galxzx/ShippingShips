@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 
 
 export default function Product (props) {
-
   let allProducts = props.categoryProducts.length ? props.categoryProducts : props.allProducts;
   const addItemToCart = props.addItemToCart;
 
@@ -30,7 +29,7 @@ export default function Product (props) {
             <h4 className='center'>{product.title}</h4>
               <div className='row'>
                 <div className='margin3'>
-                  <Link to={'/product'} onClick={e=>handleProductClick(e,product)} >
+                  <Link to={'/product/'+product.id}  >
                     <img src={product.photoURL}  className='img-thumbnail img-responsive thumbs' />
                   </Link>
                </div>
