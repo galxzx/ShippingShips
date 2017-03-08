@@ -5,7 +5,7 @@ const User = require('./user')
 const {expect} = require('chai')
 
 describe('User', function() {
-
+  this.timeout(5000)
   before('wait for the db', () => db.didSync)
 
   describe('authenticate(plaintext: String) ~> Boolean', () => {

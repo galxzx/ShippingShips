@@ -4,6 +4,7 @@ import store from '../store'
 /* -----------------    ACTIONS     ------------------ */
 
 const SET_USER_ORDERS = 'SET_USER_ORDERS';
+
 /* ------------   ACTION CREATORS     ------------------ */
 
 export const setUserOrders = (orders) => ({ type: SET_USER_ORDERS, orders})
@@ -21,6 +22,7 @@ export const reducer = (state = initState, action) => {
 			newState.orders = action.orders
 			break;
 
+
 		default:
 			return state;
 	}
@@ -29,7 +31,19 @@ export const reducer = (state = initState, action) => {
 
 /* ------------       DISPATCHERS     ------------------ */
 
-export const loadUserOrders = (review) => {
+
+export const loadUserOrders = (id) => {
+	return (dispatch, getState) => {
+		return axios.get('/api/orders/users/'+id)
+		.then(res => res.data)
+		.then(orders=>{
+			dispatch(setUserOrders(orders))
+		})
+    	.catch(e=>console.e)
+	};
+};
+
+export const loadAllOrders = (review) => {
 	return (dispatch, getState) => {
 		return axios.get('/api/orders')
 		.then(res => res.data)
@@ -39,7 +53,5 @@ export const loadUserOrders = (review) => {
     	.catch(e=>console.e)
 	};
 };
-
-export const loadAllOrder
 
 export default reducer;

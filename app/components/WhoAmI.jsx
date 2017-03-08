@@ -1,15 +1,25 @@
 import React from 'react'
 import {Link} from 'react-router'
+import {connect} from 'react-redux'
+import {logout} from 'APP/app/reducers/auth'
+import {loadUserOrders} from 'APP/app/reducers/user'
+import store from '../store'
 
 export const WhoAmI = ({ user, logout }) => (
   <div className="whoami">
-   <Link to={`users/${user.id}`}> <span className="whoami-user-name">{user && user.name}</span></Link><br/>
-    <button className="logout btn btn-primary" onClick={logout}>Logout</button>
+   	<span className="whoami-user-name"
+   		  onClick={e=>{console.log('yo');e.preventDefault();store.dispatch(loadUserOrders(user.id))}}
+   	>
+   		 <Link to={`users/${user.id}`}> 
+			{user && user.name} 
+		 </Link>
+	</span>
+  <br/>
+   <button className="logout btn btn-primary" onClick={logout}>Logout</button>
   </div>
 )
 
-import {logout} from 'APP/app/reducers/auth'
-import {connect} from 'react-redux'
+
 
 export default connect (
   ({ auth }) => ({ user: auth }),

@@ -17,11 +17,12 @@ import UserContainer from './containers/UserContainer'
 import CheckoutContainer from './containers/CheckoutContainer'
 import AddProductContainer from './containers/AddProductContainer'
 import LandingContainer from './containers/LandingContainer'
+import AdminOrdersContainer from './containers/AdminOrdersContainer'
 
 import {setProducts} from './reducers/product'
 import {setCategories} from './reducers/categories'
 import {loadCartFromLocal} from './reducers/cart'
-import {loadUserOrders} from './reducers/user'
+ import {loadUserOrders, loadAllOrders} from './reducers/user'
 
 
 const onAppEnter = () => {
@@ -32,20 +33,15 @@ const onAppEnter = () => {
     .catch(e=>console.e)
 }
 
-// const onAdminEnter = () => {
-//   onAppEnter().then(()=> {
-//     const user = store.getState().auth
-//     console.log(user)
-//     if(!user || !user.isAdmin){
-//       browserHistory.push('/products')
-//        // alert('Not Allowed')
 
-//     }
-//   })
-// }
+
 
 const onUserEnter = () => {
   return store.dispatch(loadUserOrders())
+}
+
+const adminOrderEnter = () => {
+  return store.dispatch(loadAllOrders())
 }
 
 export default function Root () {
@@ -58,11 +54,12 @@ export default function Root () {
           <Route path="/productReview" component={ProductContainer}  />
           <Route path="/cart" component={CartContainer} />
           <Route path="/signup" component={SignUp} />
-          <Route path="/users/:userId" component={UserContainer} onEnter={onUserEnter} />
+          <Route path="/users/:userId" component={UserContainer}  />
           <Route path="/checkout" component={CheckoutContainer} />
           <Router path="/admin"  component={LandingContainer}>
             <Route path="/admin/addProduct" component={AddProductContainer} />
-            <Route path="/admin/landing" c />
+            <Route path="/admin/landing"  />
+            <Route path="admin/orders" component={AdminOrdersContainer} onEnter={adminOrderEnter} />
             <IndexRedirect to="/admin/landing" />
           </Router>
           <IndexRedirect to="/products" />
