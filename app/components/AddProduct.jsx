@@ -29,7 +29,7 @@ class AddProduct extends Component {
           <Field name="description" type="text" className="form-control field" component={renderField} id="description" label="Description" />
           <Field name="price" type="text" className="form-control field" component={renderField} id="price" label="Price" />
           <Field name="inventory" type="text" className="form-control field" component={renderField} id="inventory" label="Inventory" />
-          <Field name="photoUrl" type="text" className="form-control field" component={renderField} id="photoUrl" label="photoUrl" />
+          <Field name="photoURL" type="text" className="form-control field" component={renderField} id="photoURL" label="photoURl" />
           <Field name="categories" type="text" className="form-control field" component={renderField} id="categories" label="Categories" />
           <button type="submit" disabled={submitting} className="btn btn-primary">Add Product</button>
         </form>

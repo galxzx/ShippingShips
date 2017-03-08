@@ -18,7 +18,7 @@ export default function (values) {
   }
   if (!values.zipcode) {
     error.zipcode = 'Required'
-  }else if(typeof Number(zipcode) !== 'number'){
+  }else if(typeof Number(values.zipcode) !== 'number'){
     error.zipcode = "Zipcode must be a number"
   }
   console.log('Errors======>', error)
