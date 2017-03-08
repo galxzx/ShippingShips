@@ -1,6 +1,7 @@
 'use strict'
 const app = require('APP'), {env} = app
 const db = require('APP/db')
+const Product = require('../db/models/product')
 const Order = require('../db/models/order')
 const OrderItem = require('../db/models/orderItem')
 const stripe = require('stripe')(env.STRIPE_SECRET);
@@ -56,15 +57,22 @@ module.exports = require('express').Router()
     ).catch(next)
   })
 
-  .put('/:orderId', (req, res, next)=> {
-    console.log('body', req.body)
+  .put('/:orderId', mustBeAdmin,  (req, res, next)=> {
     Order.findById(req.params.orderId)
     .then(order => {
       return order.update({status: req.body.status})
       .then(order => {
-        console.log(order)
         res.send(order)
       })
     })
     .catch(next)
+  })
+
+  .get('/admin/:orderId', (req, res, next) => {
+    Order.findById(req.params.orderId, {
+      include: [{
+        model: OrderItem,
+        include: [{model:Product}]
+      }]})
+    .then(order => res.send(order))
   })

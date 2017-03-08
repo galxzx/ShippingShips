@@ -24,9 +24,11 @@ User.hasOne(OAuth)
 
 Product.hasMany(Review)
 Product.hasMany(Review)
+Product.hasMany(OrderItem)
 
 Order.belongsTo(User)
 Order.hasMany(OrderItem)
+OrderItem.belongsTo(Order)
 OrderItem.belongsTo(Product)
 // Product.belongsToMany(Category, {through: 'product_category'})
 // Category.belongsToMany(Product, {through: 'product_category'})

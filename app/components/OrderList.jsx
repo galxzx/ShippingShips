@@ -24,9 +24,10 @@ class OrderList extends Component {
   render(){
     const order = this.props.order
     return (
-      <li key={order.id}>
-        <Link to="">
-          {`Order Id: ${order.id} Order Total: ${order.total} Order Status: ${order.status}`}
+
+      <li key={order.id} className="well">
+        <Link to={`/admin/orders/${order.id}`}>
+          {`Order Id: ${order.id}`} <br/> {`Order Total: ${order.total}`}<br/>{ `Order Status: ${order.status}`}
         </Link>
         <form onSubmit={this.handleSubmit} >
           <select value={this.state.value} onChange={this.handleChange}>

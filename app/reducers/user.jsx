@@ -4,14 +4,16 @@ import store from '../store'
 /* -----------------    ACTIONS     ------------------ */
 
 const SET_USER_ORDERS = 'SET_USER_ORDERS';
+const SET_ADMIN_ORDER = 'SET_ADMIN_ORDER';
 
 /* ------------   ACTION CREATORS     ------------------ */
 
 export const setUserOrders = (orders) => ({ type: SET_USER_ORDERS, orders})
-
+export const setAdminOrder = (order) => ({ type: SET_ADMIN_ORDER, order})
 /* ------------       REDUCER     ------------------ */
 const initState = {
-	orders: []
+	orders: [],
+	adminOrder: {orderItems:[]}
 }
 
 export const reducer = (state = initState, action) => {
@@ -20,6 +22,10 @@ export const reducer = (state = initState, action) => {
 
 		case SET_USER_ORDERS:
 			newState.orders = action.orders
+			break;
+
+		case SET_ADMIN_ORDER:
+			newState.adminOrder = action.order
 			break;
 
 
@@ -60,6 +66,16 @@ export const changeOrderStatus = (orderId, status) => dispatch => {
 		return dispatch(loadAllOrders())
 	})
 	.catch(e=>console.error(e))
+}
+
+export const loadAdminOrder = (orderId) => dispatch => {
+	return axios.get(`/api/orders/admin/${orderId}`)
+		.then(res => res.data)
+		.then(order => {
+			console.log('order', order)
+			dispatch(setAdminOrder(order))
+		})
+		.catch(e => console.error(e))
 }
 
 export default reducer;
