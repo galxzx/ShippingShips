@@ -8,17 +8,19 @@ export default function User (props) {
   
   return (
   	<div>
-      <h2>User Info</h2>
+      <h2 className='center'>User Info</h2>
+      <div className='well cart-item'>
       <p>Name: {user.name}</p>
       <p>Id: {user.id}</p>
     	{user.isAdmin&&(
         <p>Role: Administrator</p>
         )
       }
-      <h6>Order Info</h6>
+      </div>
+      <h2 className='center'>Order Info</h2>
       {
       orders.map(order=>(
-        <div className='well' key={order.id}>
+        <div className='well cart-item' key={order.id}>
         <h3>Order ID#: {order.id}</h3>
         
         <div className='margin10'>
@@ -35,7 +37,7 @@ export default function User (props) {
           </div>
         ))
         }
-        <h4 className='margin10'>Total: ${order.total}</h4>
+        <h4 className='margin10 right'>Total: ${order.total}</h4>
         </div>
         </div>
       ))
