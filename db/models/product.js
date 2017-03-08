@@ -45,7 +45,7 @@ const Product = db.define( 'product',  {
 
 	hooks: {
 		beforeCreate: (product) => {
-			product.categories = product.categories.split(",")
+			if(typeof product.categories === 'string') product.categories = product.categories.split(",")
 
 			if(product.categories.length < 1) throw new Error('Product must have at least one category');
 		}
